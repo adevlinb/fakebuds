@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>{{ group.name }}</h1>
+
+<a href="{% url 'events_cbv' group.id %}">ADD EVENT</a>
+
+<div class="card">
+    <div class="card-content">
+        <form action="{% url 'add_event' group.id %}" method="POST">
+            {% csrf_token %}
+            {{ event_form.as_p }}
+            <input type="submit" class="btn" value="Add Event">
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-content">
+        <span class="card-title">{{ group.name }}</span>
+        <p>Leader: {{ group.leader_username }}</p>
+        <p>Description: {{ group.description }}</p>
+        <p>Creation Date: {{ group.created_at }}</p>
+    </div>
+</div>
+
+<h1>BELOW IS EVENTS</h1>
+{% for event in group.event_set.all %}
+<div class="card">
+    <div class="card-content">
+        <a href="{% url 'events_detail' group.id event.id %}">
+        <span class="card-title">{{ event.title }}</span>
+        <p>Host: {{ event.host }}</p>
+        <p>Location: {{ event.location }}</p>
+        <p>Event Date: {{ event.datetime }}</p>
+        </a>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Groups</h1>
+<a href="{% url 'groups_create' %}"> ADD A GROUP</a>
+
+{% for group in groups %}
+<div class="card">
+    <a href="{% url 'detail' group.id %}">
+        <div class="card-content">
+            <span class="card-title">{{ group.name }}</span>
+            <p>Leader: {{ group.leader_username }}</p>
+            <p>Description: {{ group.description }}</p>
+            <p>Creation Date: {{ group.created_at }}</p>
+        </div>
+    </a>
+</div>
+{% endfor %}
+
+
+{% endblock %}
