@@ -26,7 +26,7 @@
                 <ul class="right">
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'index' %}">Groups</a></li>
-                    <li><a href="">My Recipies</a></li>
+                    <li><a href="{% url 'recipes_index' %}">My Recipies</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
                     <li><a href="{% url 'login' %}">Log In</a></li>

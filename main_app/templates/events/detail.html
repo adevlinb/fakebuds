@@ -3,13 +3,31 @@
 
 <h1>{{ event.title }}</h1>
 
+<form action="{% url 'assoc_recipe' group.id event.id  %}" method="POST">
+    {% csrf_token %}
+    <select name="recipes" style="display: block;">
+        {% for recipe in recipes %}
+        <option name='recipe' value="{{recipe.id}}">{{ recipe.title }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" class="btn" value="Add Recipe">
+</form>
 
 <div class="card">
     <div class="card-content">
-        <span class="card-title">{{ event.host }}</span>
+        <span class="card-title">Host: {{ event.host }}</span>
         <p>Location: {{ event.location }}</p>
         <p>Event Date: {{ event.datetime }}</p>
     </div>
+    {% for recipe in recipes %}
+    <div class="card">
+        <a href="{{ recipe.url }}" target="_blank">
+            <div class="card-content">
+                <span class="card-title">{{ recipe.title }}</span>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}

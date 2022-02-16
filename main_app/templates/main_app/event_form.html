@@ -2,19 +2,14 @@
 
 {% block content %}
 
-{% if object %}
-<h1>Edit <span class="teal-text">{{ object.name }}</span></h1>
-{% else %}
-<h1>Add Event</h1>
-{% endif %}
+<h1>Add Event <span class="teal-text">{{ object.name }}</span></h1>
+
 
 <!-- empty action attribute will post to the same url in the address bar -->
-<form action="" method="POST">
+<form action="{% url 'add_event' group.id %}" method="POST">
     {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn">
+    {{ event_form.as_p }}
+    <input type="submit" class="btn" value="Add Event">
 </form>
 
 {% endblock %}
