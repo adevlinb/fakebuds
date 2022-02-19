@@ -1,27 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-
-<h1>Groups</h1>
-<a href="{% url 'groups_create' %}"> ADD A GROUP</a>
-
-{% for group in groups %}
-<div class="card">
-    <a href="{% url 'detail' group.id %}">
-        <div class="card-content">
-            <span class="card-title">{{ group.name }}</span>
-    </a>
-    <p>Leader: {{ group.leader }}</p>
-    <p>Description: {{ group.description }}</p>
-    <p>Creation Date: {{ group.created_at }}</p>
-    <div class="card-action">
-        <form action="{% url 'assoc_profile' group.id %}" method="POST">
-            {% csrf_token %}
-            <button type="submit" class="btn">Join Group</button>
-        </form>
+<div class="container">
+    <div class="row">
+        <h1>Groups</h1>
+        <a class="btn" href="{% url 'groups_create' %}"> ADD A GROUP</a>
+    </div>
+    <div class="row">
+        {% for group in groups %}
+        <div class="col s4">
+            <div class="card">
+                <div class="card-content">
+                    <a href="{% url 'detail' group.id %}">
+                        <span class="card-title">{{ group.name }}</span>
+                    </a>
+                    <p>Creator: {{ group.leader }}</p>
+                    <p>Description: {{ group.description }}</p>
+                    <p>Creation Date: {{ group.created_at }}</p>
+                    <div class="card-action">
+                        <form action="{% url 'assoc_profile' group.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Join Group</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
-</div>
-{% endfor %}
-
 
 {% endblock %}

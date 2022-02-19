@@ -1,6 +1,49 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
-<h1>Welcome</h1>
+
+<div class="home_background">
+    <br><br>
+    <div class="landing_titles">
+        <h1 class="taste_title">TASTE•BUDS</h1>
+    </div>
+    <div class="row center">
+        <h5 class="header">A community based platform for planning your next group meal</h5>
+    </div>
+    <div class="row center">
+        <a class='btn' href="{% url 'signup' %}" id="download-button"
+            class="btn-large waves-effect waves-light teal lighten-1">SIGN UP!</a>
+    </div>
+    <br><br>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m4">
+            <h4 class="land_icon"><i class="material-icons">report_problem</i></h4>
+            <h5 class="center">The Problem</h5>
+            <p class="light">Planning Group Meals Can Be Frustrating! Are you tired of scrolling through Group Message
+                Threads
+                when trying to plan
+                a dinner with friends? Having difficulty sharing recipe suggestions for your next group meal?
+                After all that, how do you find consensus for what to make for dinner?</p>
+        </div>
+        <div class="col s12 m4">
+            <h4 class="land_icon"><i class="material-icons">assistant_photo</i></h4>
+            <h5 class="center">Mission Statement</h5>
+            <p class="light">Communal dining is a core component of our social lives. We seek to overcome the hurdles
+                that we face when using
+                traditional communication methods to plan a group </p>
+        </div>
+        <div class="col s12 m4">
+            <h4 class="land_icon"><i class="material-icons">favorite</i></h4>
+            <h5 class="center">The Solution</h5>
+            <p class="light">Generate an event, then save logistical details for your group’s next meal,.
+                Build a collection of your favorite recipes, then suggest them to any group.
+                Let the group vote to finalize the menu for your gathering!
+            </p>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

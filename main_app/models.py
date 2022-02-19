@@ -1,4 +1,5 @@
 import email
+from tokenize import group
 from django.db import models
 from django.urls import reverse
 from datetime import date, datetime
@@ -20,6 +21,7 @@ class Group(models.Model):
     leader = models.CharField(max_length=50)
 
     members = models.ManyToManyField(Profile)
+    
 
     def __str__(self):
         return f'{self.name} ({self.id})'
@@ -55,3 +57,36 @@ class Recipe(models.Model):
     
     def __str__(self):
         return f'{self.title}'
+
+class Vote(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+
+class PhotoGroup(models.Model):
+  url = models.CharField(max_length=200)
+  group = models.ForeignKey(Group, on_delete=models.CASCADE)
+  
+  def __str__(self):
+    return f"photo for group_id: {self.group_id} @{self.url}"
+
+class PhotoEvent(models.Model):
+  url = models.CharField(max_length=200)
+  event = models.ForeignKey(Event, on_delete=models.CASCADE)
+  
+  def __str__(self):
+    return f"photo for event_id: {self.event_id} @{self.url}"
+
+class PhotoRecipe(models.Model):
+  url = models.CharField(max_length=200)
+  recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+  
+  def __str__(self):
+    return f"photo for recipe_id: {self.recipe_id} @{self.url}"
+
+class PhotoProfile(models.Model):
+  url = models.CharField(max_length=200)
+  profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+  
+  def __str__(self):
+    return f"photo for profile_id: {self.profile_id} @{self.url}"

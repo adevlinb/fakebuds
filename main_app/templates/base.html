@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,30 +6,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAKE•Buds</title>
+    <title>Taste•Buds</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Kalam&family=Mukta:wght@300&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <header class="navbar-fixed">
-        <nav>
+        <nav class="blue-grey lighten-2">
             <div class="nav-wrapper">
                 <ul>
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'dashboard' %}" class="left brand-logo">&nbsp;&nbsp;FAKE•Buds</a></li>
-                    {% else %}
-                    <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;FAKE•Buds</a></li>
+                    <li class="taste_title" class="left brand-logo">&nbsp;&nbsp;Taste•Buds</a></li>
                     {% endif %}
                 </ul>
                 <ul class="right">
                     {% if user.is_authenticated %}
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
                     <li><a href="{% url 'index' %}">Groups</a></li>
                     <li><a href="{% url 'recipes_index' %}">My Recipies</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                     {% else %}
                     <li><a href="{% url 'login' %}">Log In</a></li>
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     {% endif %}
                 </ul>
             </div>

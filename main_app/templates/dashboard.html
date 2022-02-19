@@ -1,6 +1,41 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Dashboard</h1>
+<div class="group_margin">
+    <h2>Welcome: {{ user.profile.name }}</h2>
+    <h5>Your upcoming events are:</h5>
+    <div class="row">
+        {% for group in groups %}
+        {% for event in group.event_set.all %}
+        <div class="col s3 m3 lg3">
+            <div class="card">
+                {% for photo in event.photoevent_set.all %}
+                <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
+                    <img class="activator" src="{{photo.url}}" style="border-radius: 15px;">
+                </div>
+                {% endfor %}
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4"><a
+                            href="{% url 'events_detail' event.id %}"><span class="card-title">{{ event.title}}</span></a><i class="material-icons right">more_vert</i></span>
+                    <p>Host: {{ event.host }}</p>
+                    <p>Location: {{ event.location }}</p>
+                    <p>Date: {{ event.datetime }}</p>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4"><a href="{% url 'detail' group.id %}"><span
+                                class="card-title">{{ group.name }}</span></a><i
+                            class="material-icons right">close</i></span>
+                    <p>Leader: {{ group.leader }}</p>
+                    <p>Description: {{ group.description }}</p>
+                    <p>Creation Date: {{ group.created_at }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
 {% endblock %}
