@@ -15,7 +15,7 @@
                     </a>
                     <p>Creator: {{ group.leader }}</p>
                     <p>Description: {{ group.description }}</p>
-                    <p>Creation Date: {{ group.created_at }}</p>
+                    <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
                     <div class="card-action">
                         <form action="{% url 'assoc_profile' group.id %}" method="POST">
                             {% csrf_token %}

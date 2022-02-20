@@ -1,49 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container">
-    <h3>{{ user.profile.name }}'s Recipes</h3>
-    <div class="card">
-        <div class="card-content">
-            <form action="{% url 'add_recipe' %}" method="POST">
-                {% csrf_token %}
-                {{ recipe_form.as_p }}
-                <input type="submit" class="btn" value="Add Recipe!">
-            </form>
-        </div>
-    </div>
-    <div class="row">
-        {% if recipes.count %}
-        {% for recipe in recipes %}
-        <div class="col s4">
-            <div class="card" class="recipe-card">
-                <a href="{{ recipe.url }}" target="_blank">
-                    <div class="card-content">
-                        <span class="card-title">{{ recipe.title }}</span>
+<div class="row">
+  
+        <h3>{{ user.profile.name }}'s Recipes</h3>
+ 
+        <a class="btn" href="{% url 'recipes_create_page' %}"> ADD A NEW RECIPE</a>
+
+</div>
+
+<div class="row">
+        
+                {% if recipes.count %}
+                {% for recipe in recipes %}
+                <div class="col s6 m4 l3 xl3">
+                    <div class="card" style="border-radius: 20px;">
+                        <a href="{{ recipe.url }}" target="_blank">
+                            <div class="card-content" style="border-radius: 20px;">
+                                <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
+                            </div>
+                        </a>
+                        {% for photo in recipe.photorecipe_set.all %}
+                        <div class="card-image" style="border-radius: 20px;">
+                            <img style="border-radius: 20px;" src="{{photo.url}}">
+                        </div>
+                        {% endfor %}
                     </div>
-                </a>
-                {% if recipe.photorecipe_set.all.count %}
-                {% for photo in recipe.photorecipe_set.all %}
-                <div class="card-image" class="card_image">
-                    <img class="card_image" src="{{photo.url}}">
                 </div>
                 {% endfor %}
                 {% else %}
-                <form action="{% url 'add_photo_recipe' recipe.id %}" enctype="multipart/form-data" method="POST"
-                    class="card-panel">
-                    {% csrf_token %}
-                    <input type="file" name="photo-file">
-                    <br><br>
-                    <input type="submit" class="btn" value="Upload Photo">
-                </form>
+                <h5>Get to cookin, you don't have any recipes yet!!</h5>
                 {% endif %}
-            </div>
-        </div>
-        {% endfor %}
-        {% else %}
-        <h5>Get to cookin, you don't have any recipes yet!!</h5>
-        {% endif %}
-    </div>
+
+
 </div>
 
 {% endblock %}
+
+
+  
+ 
+

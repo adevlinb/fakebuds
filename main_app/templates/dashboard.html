@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="group_margin">
+<div class="container">
     <h2>Welcome: {{ user.profile.name }}</h2>
     <h5>Your upcoming events are:</h5>
     <div class="row">
         {% for group in groups %}
         {% for event in group.event_set.all %}
-        <div class="col s3 m3 lg3">
+        <div class="col s6 m4 l4 xl3">
             <div class="card">
                 {% for photo in event.photoevent_set.all %}
                 <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
@@ -16,10 +16,11 @@
                 {% endfor %}
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4"><a
-                            href="{% url 'events_detail' event.id %}"><span class="card-title">{{ event.title}}</span></a><i class="material-icons right">more_vert</i></span>
+                            href="{% url 'events_detail' event.id %}"><span class="card-title">{{ event.title }}</span></a><i class="material-icons right">more_vert</i></span>
                     <p>Host: {{ event.host }}</p>
                     <p>Location: {{ event.location }}</p>
-                    <p>Date: {{ event.datetime }}</p>
+                    <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
+                    <p>Time: {{ event.datetime|time:"h:i" }}</p>
                 </div>
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4"><a href="{% url 'detail' group.id %}"><span
@@ -27,7 +28,7 @@
                             class="material-icons right">close</i></span>
                     <p>Leader: {{ group.leader }}</p>
                     <p>Description: {{ group.description }}</p>
-                    <p>Creation Date: {{ group.created_at }}</p>
+                    <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
                 </div>
             </div>
         </div>

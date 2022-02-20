@@ -2,18 +2,20 @@
 
 {% block content %}
 <div class="container">
+    <div class="card">
     {% if object %}
     <h1>Edit <span class="teal-text">{{ object.name }}</span></h1>
     {% else %}
     <h1>Add Group</h1>
     {% endif %}
-    <div class="card">
-        <form class="required-field" action="" method="POST">
+        <form class="required-field" action=""  enctype="multipart/form-data" method="POST">
             {% csrf_token %}
             <table class="required-field">
-                {{ form.as_table }}
+                {{ form.as_p }}
             </table>
-            <input type="submit" value="Submit!" class="btn">
+            <input type="file" name="photo-file">
+            <br>
+            <input type="submit" value="Submitions" class="btn">
         </form>
     </div>
 </div>
