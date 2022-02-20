@@ -43,6 +43,9 @@
                     <span class="card-title">
                         {{ member.name }}
                     </span>
+                    {% for photo in profile.photoprofile_set.all %}
+                    <img class="main-image" src="{{photo.url}}">
+                    {% endfor %}
                     <form action="{% url 'unassoc_profile' group.id %}" method="POST">
                         {% csrf_token %}
                         <button type="submit" class="btn">Leave</button>

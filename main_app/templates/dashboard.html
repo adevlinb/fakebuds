@@ -5,6 +5,11 @@
     <h2>Welcome: {{ user.profile.name }}</h2>
     <h5>Your upcoming events are:</h5>
     <div class="row">
+        {% for photo in profile.photoprofile_set.all %}
+        <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
+            <img class="main-image" src="{{photo.url}}" style="border-radius: 15px;">
+        </div>
+        {% endfor %}
         {% for group in groups %}
         {% for event in group.event_set.all %}
         <div class="col s6 m4 l4 xl3">

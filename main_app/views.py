@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import models
 from django.template.defaultfilters import register
-from .models import Group, Event, Profile, Recipe, Vote, PhotoGroup, PhotoEvent, PhotoRecipe
+from .models import Group, Event, PhotoProfile, Profile, Recipe, Vote, PhotoGroup, PhotoEvent, PhotoRecipe
 from .forms import EventForm, ProfileForm, RecipeForm
 
 # Custom Filter
@@ -26,7 +26,7 @@ def home(request):
 def dashboard (request):
   profile = Profile.objects.get(user=request.user)
   groups = Group.objects.filter(members=profile)
-  return render(request, 'dashboard.html', {'groups': groups})
+  return render(request, 'dashboard.html', {'groups': groups, 'profile': profile})
 
 def signup(request):
   error_message = ''
@@ -45,6 +45,27 @@ def signup(request):
 def profile_form(request):
   profile_form = ProfileForm()
   return render(request, 'registration/profile_form.html', {'profile_form': profile_form})
+
+@login_required
+def add_profile(request):
+  form = ProfileForm(request.POST)
+  photo_file = request.FILES.get('photo-file', None)
+  if form.is_valid():
+    new_profile = form.save(commit=False)
+    new_profile.user = request.user
+    new_profile.save()
+  if photo_file:
+    s3 = boto3.client('s3')
+    key = uuid.uuid4().hex[:8] + photo_file.name[photo_file.name.rfind('.'):]
+    try:
+      bucket = os.environ['S3_BUCKET']
+      s3.upload_fileobj(photo_file, bucket, key)
+      url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+      PhotoProfile.objects.create(url=url, profile_id=new_profile.id)
+    except Exception as e:
+      print('An error occured uploading file to S3')
+      print(e)
+  return redirect('dashboard')
 
 
 #############################  GROUP FUNCTIONS   ############################### 
@@ -137,18 +158,6 @@ def add_event(request, group_id):
 #############################   PROFILE FUNCTIONS    ###################################### 
 
 @login_required
-def add_profile(request):
-  current_user = request.user
-  #create a ModelForm instance using the data in request.POST
-  form = ProfileForm(request.POST)
-  #check if form is valid
-  if form.is_valid():
-    new_profile = form.save(commit=False)
-    new_profile.user = current_user
-    new_profile.save()
-  return redirect('dashboard')
-
-@login_required
 def assoc_profile(request, group_id):
   profile_id = Profile.objects.get(user=request.user)
   group = Group.objects.get(id=group_id)
@@ -234,28 +243,6 @@ def add_photo_group(request, group_id):
       print(e)
 
   return redirect('detail', group_id=group_id)
-
-
-
-# @login_required
-# def add_photo_profile(request, profile_id):
-#   # photo file will be the "name" attribute of the input
-#   photo_file = request.FILES.get('photo-file', None)
-#   if photo_file:
-#     s3 = boto3.client('s3')
-#     # need a unique "key" name for s3
-#     # and need the same file extension as well
-#     key = uuid.uuid4().hex[:8] + photo_file.name[photo_file.name.rfind('.'):]
-#     try:
-#       bucket = os.environ['S3_BUCKET']
-#       s3.upload_fileobj(photo_file, bucket, key)
-#       url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-#       Photo.objects.create(url=url, cat_id=cat_id)
-#     except Exception as e:
-#       print('An error occured uploading file to S3')
-#       print(e)
-
-#   return redirect('detail', profile_id=profile_id)
 
 
 
