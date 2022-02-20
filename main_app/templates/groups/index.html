@@ -13,7 +13,7 @@
                     <a href="{% url 'detail' group.id %}">
                         <span class="card-title">{{ group.name }}</span>
                     </a>
-                    <p>Creator: {{ group.leader }}</p>
+                    <p>Creator: {{ user.profile.name }}</p>
                     <p>Description: {{ group.description }}</p>
                     <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
                     <div class="card-action">

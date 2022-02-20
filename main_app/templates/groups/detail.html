@@ -4,27 +4,17 @@
 <div class="container">
     <h1>{{ group.name }} Details</h1>
     <div class="row">
-        {% if group.photogroup_set.all.count %}
         {% for photo in group.photogroup_set.all %}
         <div class="col s4">
-            <div class="card-image" class="card_image">
-                <img class="card_image" src="{{photo.url}}">
+            <div class="main-image" class="card_image">
+                <img src="{{photo.url}}">
             </div>
             {% endfor %}
-            {% else %}
-            <form action="{% url 'add_photo_group' group.id %}" enctype="multipart/form-data" method="POST"
-                class="card-panel">
-                {% csrf_token %}
-                <input type="file" name="photo-file">
-                <br><br>
-                <input type="submit" class="btn" value="Upload Photo">
-            </form>
-            {% endif %}
         </div>
         <div id="group-detail" class="col s6">
             <div class="card content">
                 <div class="group_margin">
-                    <p>Creator: {{ group.leader }}</p>
+                    <p>Creator: {{ user.profile.name }}</p>
                     <p>Description: {{ group.description }}</p>
                     <p>Creation Date: {{ group.created_at }}</p>
                     <pre><a class="card-title" href="{% url 'groups_update' group.id %}">Edit Info</a>    <a class="card-title" href="{% url 'groups_delete' group.id %}">Delete Group</a>
