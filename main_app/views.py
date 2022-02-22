@@ -80,13 +80,29 @@ def groups_index(request):
 class GroupCreate(LoginRequiredMixin, CreateView):
   model = Group
   fields = ['name', 'description']
-  # This inherited method is called when a
-  # valid group form is being submitted
+
   def form_valid(self, form):
-    # form.instance is the group object
     form.instance.user = self.request.user
     form.instance.leader = self.request.user.username
-    return super().form_valid(form)
+    new_group = super().form_valid(form)
+
+
+    photo_file = self.request.FILES.get('photo-file', None)
+    if photo_file:
+      s3 = boto3.client('s3')
+      # need a unique "key" name for s3
+      # and need the same file extension as well
+      key = uuid.uuid4().hex[:8] + photo_file.name[photo_file.name.rfind('.'):]
+      try:
+        bucket = os.environ['S3_BUCKET']
+        s3.upload_fileobj(photo_file, bucket, key)
+        url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+        PhotoGroup.objects.create(url=url, group_id=new_group.id)
+      except Exception as e:
+        print('An error occured uploading file to S3')
+        print(e)
+
+    return redirect('detail', group_id=new_group.id)
 
 
 @login_required
@@ -224,25 +240,7 @@ def vote_up(request, event_id, recipe_id):
 
 
 
-@login_required
-def add_photo_group(request, group_id):
-  # photo file will be the "name" attribute of the input
-  photo_file = request.FILES.get('photo-file', None)
-  if photo_file:
-    s3 = boto3.client('s3')
-    # need a unique "key" name for s3
-    # and need the same file extension as well
-    key = uuid.uuid4().hex[:8] + photo_file.name[photo_file.name.rfind('.'):]
-    try:
-      bucket = os.environ['S3_BUCKET']
-      s3.upload_fileobj(photo_file, bucket, key)
-      url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-      PhotoGroup.objects.create(url=url, group_id=group_id)
-    except Exception as e:
-      print('An error occured uploading file to S3')
-      print(e)
 
-  return redirect('detail', group_id=group_id)
 
 
 
@@ -250,3 +248,32 @@ def add_photo_group(request, group_id):
 
 #############################   TESTING PHOTO / Create same time    ###################################### 
 
+# class GroupCreate(LoginRequiredMixin, CreateView):
+#   model = Group
+#   fields = ['name', 'description']
+
+#   def form_valid(self, form):
+#     form.instance.user = self.request.user
+#     form.instance.leader = self.request.user.username
+#     return super().form_valid(form)
+
+
+#     @login_required
+# def add_photo_group(request, group_id):
+#   # photo file will be the "name" attribute of the input
+#   photo_file = request.FILES.get('photo-file', None)
+#   if photo_file:
+#     s3 = boto3.client('s3')
+#     # need a unique "key" name for s3
+#     # and need the same file extension as well
+#     key = uuid.uuid4().hex[:8] + photo_file.name[photo_file.name.rfind('.'):]
+#     try:
+#       bucket = os.environ['S3_BUCKET']
+#       s3.upload_fileobj(photo_file, bucket, key)
+#       url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
+#       PhotoGroup.objects.create(url=url, group_id=group_id)
+#     except Exception as e:
+#       print('An error occured uploading file to S3')
+#       print(e)
+
+#   return redirect('detail', group_id=group_id)

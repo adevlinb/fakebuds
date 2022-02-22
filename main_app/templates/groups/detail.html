@@ -1,8 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container">
-    <h1>{{ group.name }} Details</h1>
+
+    <div class="row">
+        <div class="col s4">
+            {% for photo in group.photogroup_set.all %}
+            <img class="main-image" src="{{photo.url}}">
+            {% endfor %}
+        </div>
+        <div class="col s4">
+            <h1>Group: {{ group.name }}</h1>
+        </div>
+        <div class="col s4">
+            <p>Creator: {{ user.profile.name }}</p>
+            <p>Description: {{ group.description }}</p>
+            <p>Creation Date: {{ group.created_at }}</p>
+            <pre><a class="card-title" href="{% url 'groups_update' group.id %}">Edit Info</a>    <a class="card-title" href="{% url 'groups_delete' group.id %}">Delete Group</a>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- <h1>{{ group.name }} Details</h1>
     <div class="row">
         {% for photo in group.photogroup_set.all %}
         <div class="col s4">
@@ -22,7 +43,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <h3>{{ group.name }}'s Members</h3>
         {% if group.members.count %}
@@ -88,6 +109,6 @@
     {% else %}
     <h5>Y'all need to get together and make some events!</h5>
     {% endif %}
-</div>
+
 
 {% endblock %}

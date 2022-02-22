@@ -7,6 +7,83 @@ body {
   box-sizing: border-box;
 }
 
+main {
+  flex: 1 0 auto;
+}
+
+footer.page-footer {
+  padding-top: 0;
+  padding-right: 50px;
+  text-align: right;
+}
+
+/* .recipe-card {
+  border-radius: 20px;
+  max-width: 200px;
+} */
+
+/* .card_image {
+  border-radius: 15px;
+  max-width: 300px;
+} */
+
+/* .group_margin {
+  margin: 20px;
+} */
+
+.home_background {
+  background-image: url("../images/main_img1.jpeg");
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+}
+
+.taste_title {
+  margin-top: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  font-family: 'Indie Flower', cursive;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.land_icon {
+  text-align: center;
+  margin: none;
+}
+
+.header {
+  color: white;
+  font-weight: 900;
+}
+
+/* .card {
+  background-image: url("../images/bamboo12.png");
+  background-size: contain;
+} */
+
+/* p {
+  font-weight: 900;
+  font-size: larger;
+} */
+
+.landing_titles {
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+/* .required-field {
+  font-size: x-large;
+  color: black;
+} */
+
+/* #group-detail {
+  margin: 20px;
+} */
+
 #footer {
   margin: 40px;
 }
@@ -42,4 +119,7 @@ body {
   background-size: contain;
   border-radius: 20px;
   max-width: 400px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
 }
