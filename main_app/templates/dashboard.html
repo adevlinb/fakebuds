@@ -1,15 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container">
-    <h2>Welcome: {{ user.profile.name }}</h2>
-    <h5>Your upcoming events are:</h5>
+
+  <h5>Your upcoming events are:</h5>
+    
     <div class="row">
-        {% for photo in profile.photoprofile_set.all %}
-        <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
-            <img class="main-image" src="{{photo.url}}" style="border-radius: 15px;">
-        </div>
-        {% endfor %}
         {% for group in groups %}
         {% for event in group.event_set.all %}
         <div class="col s6 m4 l4 xl3">
@@ -19,7 +14,9 @@
                     <img class="activator" src="{{photo.url}}" style="border-radius: 15px;">
                 </div>
                 {% endfor %}
-                <div class="card-content">
+         
+         
+                <div class="card-content" style="border-radius: 15px;">
                     <span class="card-title activator grey-text text-darken-4"><a
                             href="{% url 'events_detail' event.id %}"><span class="card-title">{{ event.title }}</span></a><i class="material-icons right">more_vert</i></span>
                     <p>Host: {{ event.host }}</p>

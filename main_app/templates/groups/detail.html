@@ -21,41 +21,18 @@
 
 
 
-
-
-    <!-- <h1>{{ group.name }} Details</h1>
-    <div class="row">
-        {% for photo in group.photogroup_set.all %}
-        <div class="col s4">
-            <div class="main-image" class="card_image">
-                <img src="{{photo.url}}">
-            </div>
-            {% endfor %}
-        </div>
-        <div id="group-detail" class="col s6">
-            <div class="card content">
-                <div class="group_margin">
-                    <p>Creator: {{ user.profile.name }}</p>
-                    <p>Description: {{ group.description }}</p>
-                    <p>Creation Date: {{ group.created_at }}</p>
-                    <pre><a class="card-title" href="{% url 'groups_update' group.id %}">Edit Info</a>    <a class="card-title" href="{% url 'groups_delete' group.id %}">Delete Group</a>
-          </pre>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <div class="row">
         <h3>{{ group.name }}'s Members</h3>
-        {% if group.members.count %}
-        {% for member in group.members.all %}
+        {% if profiles.count %}
+        {% for profile in profiles.all %}
         <div class="col s3">
+            <span class="card-title" style="width: 200px;">{{ profile.name }}</span>
             <div class="card small">
                 <div class="card-content">
-                    <span class="card-title">
-                        {{ member.name }}
-                    </span>
                     {% for photo in profile.photoprofile_set.all %}
-                    <img class="main-image" src="{{photo.url}}">
+               
+                        <img class="main-image" src="{{photo.url}}" style="border-radius: 15px;">
+          
                     {% endfor %}
                     <form action="{% url 'unassoc_profile' group.id %}" method="POST">
                         {% csrf_token %}
@@ -69,6 +46,34 @@
         <h5>No Members :(</h5>
         {% endif %}
     </div>
+
+
+<!-- 
+    <div class="row">
+        <h3>{{ group.name }}'s Members</h3>
+        {% if group.members.count %}
+            {% for member in group.members.all %}
+            <div class="col s3">
+                <div class="card small">
+                    <div class="card-content">
+                        <span class="card-title">
+                            {{ member.name }}
+                        </span>
+                        {% for photo in profiles.photoprofile_set.all %}
+                        <img class="main-image" src="{{photo.url}}">
+                        {% endfor %}
+                        <form action="{% url 'unassoc_profile' group.id %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn">Leave</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <h5>No Members :(</h5>
+        {% endif %}
+    </div> -->
     <h3>Group Events:</h3>
     <a class=btn href="{% url 'events_create' group.id %}"> ADD AN EVENT</a>
     <br>

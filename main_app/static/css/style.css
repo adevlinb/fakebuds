@@ -40,9 +40,7 @@ footer.page-footer {
 
 .taste_title {
   margin-top: 0;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  margin-left: 17%;
   color: white;
   font-family: 'Indie Flower', cursive;
   font-size: 50px;
@@ -57,6 +55,10 @@ footer.page-footer {
 .header {
   color: white;
   font-weight: 900;
+}
+
+h5 {
+  text-align: center;
 }
 
 /* .card {
@@ -98,9 +100,16 @@ footer.page-footer {
 }
 
 .main-image {
-  height: 300px;
+  max-height: 50px;
+  vertical-align: middle;
+  margin: 0 20px;
 }
 
+#welcome {
+  color: black;
+  text-transform: uppercase;
+  font-size: larger;
+}
 
 .card-title {
   color: #ff4926;
@@ -114,7 +123,7 @@ footer.page-footer {
   background-color: #90a4ae
 }
 
-.card-reveal, .card-content, .card, .card-image, .card-panel {
+ .card,  .card-panel {
   background-image: url("../images/bamboo12.png");
   background-size: contain;
   border-radius: 20px;
@@ -122,4 +131,19 @@ footer.page-footer {
   border-style: solid;
   border-width: 2px;
   border-color: black;
+}
+.card-image, .card-reveal, .card-content {
+  background-image: url("../images/bamboo12.png");
+  background-size: contain;
+}
+
+.in-flex {
+  display: inline-flex;
+  justify-content: center;
+}
+
+form {
+  color: black;
+  font-weight: 900;
+  font-size: larger;
 }

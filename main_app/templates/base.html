@@ -25,19 +25,23 @@
     <header class="navbar-fixed">
         <nav class="blue-grey lighten-2">
             <div class="nav-wrapper">
+                {% if user.is_authenticated %}
                 <ul>
-                    {% if user.is_authenticated %}
+                    {% for photo in user.profile.photoprofile_set.all %}
+                    <li><img class="main-image" src="{{photo.url}}" style="border-radius: 15px;"></li>
+                    {% endfor %}
+                    <li id="welcome">Hi, {{ user.profile.name }}!</li>
                     <li class="taste_title" class="left brand-logo">&nbsp;&nbsp;Taste•Buds</a></li>
-                    {% endif %}
                 </ul>
+                {% endif %}
                 <ul class="right">
                     {% if user.is_authenticated %}
-                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-                    <li><a href="{% url 'index' %}">Groups</a></li>
-                    <li><a href="{% url 'recipes_index' %}">My Recipies</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li><a href="{% url 'dashboard' %}">DASHBOARD</a></li>
+                    <li><a href="{% url 'index' %}">GROUPS</a></li>
+                    <li><a href="{% url 'recipes_index' %}">MY RECIPES</a></li>
+                    <li><a href="{% url 'logout' %}">LOG OUT</a></li>
                     {% else %}
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a href="{% url 'login' %}">LOG IN</a></li>
                     {% endif %}
                 </ul>
             </div>

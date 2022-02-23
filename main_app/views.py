@@ -85,7 +85,6 @@ class GroupCreate(LoginRequiredMixin, CreateView):
     form.instance.user = self.request.user
     form.instance.leader = self.request.user.username
     super().form_valid(form)
-    print(self.object.id)
     group_id = self.object.id
     photo_file = self.request.FILES.get('photo-file', None)
     if photo_file:
@@ -108,9 +107,13 @@ class GroupCreate(LoginRequiredMixin, CreateView):
 def groups_detail(request, group_id):
   profile = Profile.objects.get(user=request.user)
   groups = Group.objects.filter(members=profile, id=group_id)
+
   if groups:
      group = Group.objects.get(id=group_id)
-     return render(request, 'groups/detail.html', {'group': group})
+     members = group.members.all
+     profiles = Profile.objects.filter(group=group)
+     print(profiles)
+     return render(request, 'groups/detail.html', {'group': group, "profiles": profiles})
   else:
     return redirect('index')
 

@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-    <div class="row">
-        <h1>Groups</h1>
-        <a class="btn" href="{% url 'groups_create' %}"> ADD A GROUP</a>
+
+    <div class="in-flex">
+        <h3>Groups</h3>
+        <a class="btn" href="{% url 'groups_create' %}"> START A GROUP</a>
     </div>
+
     <div class="row">
         {% for group in groups %}
         <div class="col s4">
@@ -27,6 +28,6 @@
         </div>
         {% endfor %}
     </div>
-</div>
+
 
 {% endblock %}

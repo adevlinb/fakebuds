@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container">
-    <h1>Event: {{ event.title }}</h1>
-    <div class="card" style="border-radius: 20px;">
-        <div class="card-content" style="border-radius: 20px;">
+<div class="in-flex">
+    <div class="card" style="border-radius: 20px; padding: 25px;">
+        <h5>CREATE YOUR EVENT</h5>
             <form action="{% url 'add_event' group.id %}" enctype="multipart/form-data" method="POST">
                 {% csrf_token %}
                 {{ event_form.as_p }}
@@ -11,7 +10,6 @@
                 <br><br>
                 <input type="submit" class="btn" value="Add Event">
             </form>
-        </div>
     </div>
 </div>
 <script>
