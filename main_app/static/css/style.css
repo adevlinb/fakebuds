@@ -147,3 +147,7 @@ form {
   font-weight: 900;
   font-size: larger;
 }
+
+#coders {
+  float: right;
+}

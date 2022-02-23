@@ -8,26 +8,29 @@
 
     <div class="row">
         {% for group in groups %}
-        <div class="col s4">
-            <div class="card" style="border-radius: 20px;">
-                <div class="card-content" style="border-radius: 20px;">
+        <div class="col s12 m8 l6 xl6">
+            <div class="card">
+                {% for photo in group.photogroup_set.all %}
+                <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
+                    <img src="{{photo.url}}" style="border-radius: 15px;">
+                </div>
+                {% endfor %}
+                <div class="card-content" style="border-radius: 15px;">
                     <a href="{% url 'detail' group.id %}">
-                        <span class="card-title">{{ group.name }}</span>
-                    </a>
+                        <span class="card-title">{{ group.name }}</span></a>
                     <p>Creator: {{ user.profile.name }}</p>
                     <p>Description: {{ group.description }}</p>
                     <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
-                    <div class="card-action">
-                        <form action="{% url 'assoc_profile' group.id %}" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="btn">Join Group</button>
-                        </form>
-                    </div>
+                    <form action="{% url 'assoc_profile' group.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Join Group</button>
+                    </form>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
+ 
 
 
 {% endblock %}
