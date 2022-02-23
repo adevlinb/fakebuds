@@ -84,9 +84,9 @@ class GroupCreate(LoginRequiredMixin, CreateView):
   def form_valid(self, form):
     form.instance.user = self.request.user
     form.instance.leader = self.request.user.username
-    new_group = super().form_valid(form)
-
-
+    super().form_valid(form)
+    print(self.object.id)
+    group_id = self.object.id
     photo_file = self.request.FILES.get('photo-file', None)
     if photo_file:
       s3 = boto3.client('s3')
@@ -97,12 +97,11 @@ class GroupCreate(LoginRequiredMixin, CreateView):
         bucket = os.environ['S3_BUCKET']
         s3.upload_fileobj(photo_file, bucket, key)
         url = f"{os.environ['S3_BASE_URL']}{bucket}/{key}"
-        PhotoGroup.objects.create(url=url, group_id=new_group.id)
+        PhotoGroup.objects.create(url=url, group_id=self.object.id)
       except Exception as e:
         print('An error occured uploading file to S3')
         print(e)
-
-    return redirect('detail', group_id=new_group.id)
+    return redirect('detail', group_id=group_id)
 
 
 @login_required
