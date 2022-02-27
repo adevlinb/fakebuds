@@ -2,7 +2,7 @@
 {% block content %}
 
     
-    <div class="row">
+<div class="row" style="height: 25vh;">
         <div class="col s4" >
             {% for photo in event.photoevent_set.all %}
             <img class="main-image" src="{{photo.url}}">
@@ -18,31 +18,42 @@
         </div>
     </div>
     <div class="divider"></div>
-    <div class="row">
-        <form action="{% url 'assoc_recipe' event.id  %}" method="POST">
-            {% csrf_token %}
+
+    <div class="in-flex">
+        <h3>Recommended Recipe's:</h3>
+ 
+        <div class="row" style="max-height: 10vh;">
+
+            <form action="{% url 'assoc_recipe' event.id  %}" method="POST">
+                {% csrf_token %}
                 <select name="recipes" class="add-recipe">
                     {% for recipe in recipes_not_in_event %}
                     <option name='recipe' value="{{recipe.id}}">{{ recipe.title }}</option>
                     {% endfor %}
                 </select>
-         
-            <input type="submit" value="Add Recipe">
-        </form>
+                
+                <input type="submit" value="Add Recipe">
+            </form>
+        </div>
+        
     </div>
-    <div class="divider"></div>
-   
+    
     <div class="row">
 
-        <!-- {% if recipes_in_event.count %}
+        {% if recipes_in_event.count %}
             {% for recipe in recipes_in_event %}
-                <div class="col s3 m6 l8 xl8">
-                    <div class="card" style="border-radius: 20px;">
-                        <a href="{{ recipe.url }}" target="_blank">
-                            <div class="card-content" style="border-radius: 20px;">
+                <div class="col s3 m3 l3 xl3">
+                    <div class="card" style="border-radius: 20px; max-height: 40vh;">
+                        <div style="padding: 10px;">
+                            <a href="{{ recipe.url }}" target="_blank">
                                 <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
-                            </div>
-                        </a>
+                            </a>
+                            <form action="{% url 'vote_up' event.id recipe.id %}" method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn"><i class="large material-icons">thumb_up</i></button>
+                            </form>
+                            <div>vote score: {{ tally | get_item:recipe.id }}</div>
+                        </div>
                         {% for photo in recipe.photorecipe_set.all %}
                         <div class="card-image" style="border-radius: 20px;">
                             <img style="border-radius: 20px;" src="{{photo.url}}">
@@ -53,7 +64,7 @@
                 {% endfor %}
                 {% else %}
             <h5>Get to cookin, you don't have any recipes yet!!</h5>
-        {% endif %} -->
+        {% endif %}
 
 
     </div>
@@ -62,32 +73,3 @@
 
     
 
-
-
-    <div class="row">
-        {% if recipes_in_event.count %}
-        {% for recipe in recipes_in_event %}
-
-        <div class="col s6 m3 l2 xl1">
-            <div class="card">
-
-                <div class="card-content">
-                    <a href="{{ recipe.url }}" target="_blank"><span class="card-title">{{ recipe.title }}</span></a>
-                    <form action="{% url 'vote_up' event.id recipe.id %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" class="btn"><i class="large material-icons">thumb_up</i></button>
-                    </form>
-                    <div>vote score: {{ tally | get_item:recipe.id }}</div>
-                </div>
-                {% for photo in recipe.photorecipe_set.all %}
-                <div class="card-image" class="card_image">
-                    <img class="card_image" src="{{photo.url}}">
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        {% endfor %}
-        {% else %}
-        <h5>Suggest a recipe for the event!</h5>
-        {% endif %}
-    </div>

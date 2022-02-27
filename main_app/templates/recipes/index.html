@@ -14,8 +14,8 @@
         
                 {% if recipes.count %}
                 {% for recipe in recipes %}
-                <div class="col s3 m6 l8 xl8">
-                    <div class="card" style="border-radius: 20px;">
+                <div class="col s3 m3 l3 xl3">
+                    <div class="card" style="border-radius: 20px; max-height: 35vh;">
                         <a href="{{ recipe.url }}" target="_blank">
                             <div class="card-content" style="border-radius: 20px;">
                                 <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>

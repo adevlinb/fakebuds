@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    <div class="row">
+<div class="row" style="height: 25vh;">
         <div class="col s4">
             {% for photo in group.photogroup_set.all %}
             <img class="main-image" src="{{photo.url}}">
@@ -19,11 +19,11 @@
     </div>
 
     <div class="row">
-        <h3>{{ group.name }}'s Members</h3>
+        <h3>{{ group.name }} Members</h3>
         {% if profiles.count %}
         {% for profile in profiles.all %}
 
-        <div class="col s12 m8 l6 xl6">
+        <div class="col s6 m6 l6 xl6">
             <div class="card">
                 {% for photo in profile.photoprofile_set.all %}
                 <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
@@ -60,7 +60,7 @@
         <div class="col s12 m8 l6 xl6">
             <div class="card">
                 {% for photo in event.photoevent_set.all %}
-                <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
+                <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px; max-height: 20vh;">
                     <img src="{{photo.url}}" style="border-radius: 15px;">
                 </div>
                 {% endfor %}

@@ -17,20 +17,6 @@ footer.page-footer {
   text-align: right;
 }
 
-/* .recipe-card {
-  border-radius: 20px;
-  max-width: 200px;
-} */
-
-/* .card_image {
-  border-radius: 15px;
-  max-width: 300px;
-} */
-
-/* .group_margin {
-  margin: 20px;
-} */
-
 .home_background {
   background-image: url("../images/main_img1.jpeg");
   height: 250px;
@@ -39,8 +25,8 @@ footer.page-footer {
 }
 
 .taste_title {
+  text-align: center;
   margin-top: 0;
-  margin-left: 17%;
   color: white;
   font-family: 'Indie Flower', cursive;
   font-size: 50px;
@@ -49,6 +35,7 @@ footer.page-footer {
 
 .land_icon {
   text-align: center;
+
   margin: none;
 }
 
@@ -61,30 +48,11 @@ h5 {
   text-align: center;
 }
 
-/* .card {
-  background-image: url("../images/bamboo12.png");
-  background-size: contain;
-} */
-
-/* p {
-  font-weight: 900;
-  font-size: larger;
-} */
-
 .landing_titles {
   background-color: rgba(0, 0, 0, 0.5);
   align-items: center;
   justify-content: center;
 }
-
-/* .required-field {
-  font-size: x-large;
-  color: black;
-} */
-
-/* #group-detail {
-  margin: 20px;
-} */
 
 #footer {
   margin: 40px;
@@ -95,14 +63,18 @@ h5 {
 }
 
 .image {
-  object-fit: contain;
-  max-width: fit-content;
+  /* object-fit: scale-down; */
+  /* max-width: fit-content; */
+  /* display: block;
+  margin: auto;
+  width: 30%; */
 }
 
 .main-image {
   max-height: 50px;
   vertical-align: middle;
   margin: 0 20px;
+
 }
 
 #welcome {
@@ -113,6 +85,7 @@ h5 {
 
 .card-title {
   color: #ff4926;
+  text-transform: uppercase;
 }
 
 .btn {
@@ -123,18 +96,44 @@ h5 {
   background-color: #90a4ae
 }
 
- .card,  .card-panel {
+.row {
+  height: 50vh;
+}
+
+img {
+  /* text-align: center; */
+  max-height: 50%;
+  width: auto;
+  max-width: 100%;
+  object-fit: fill;
+  object-position: center;
+}
+
+ .card, .card-panel {
   background-image: url("../images/bamboo12.png");
   background-size: contain;
   border-radius: 20px;
-  max-width: 400px;
+  max-width: 50vw;
   border-style: solid;
   border-width: 2px;
   border-color: black;
+  contain: content;
+  overflow: none;
 }
 .card-image, .card-reveal, .card-content {
   background-image: url("../images/bamboo12.png");
   background-size: contain;
+}
+
+.card-content {
+  padding: 20px !important;
+  padding-top: 10px !important; 
+}
+
+
+.image-card {
+  text-align: center;
+  object-position: center;
 }
 
 .in-flex {
