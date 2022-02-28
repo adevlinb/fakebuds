@@ -8,8 +8,8 @@
 
     <div class="row">
         {% for group in groups %}
-        <div class="col s3 m3 l3 xl3" >
-            <div class="card">
+                <div class="col s3 m3 l3 xl3">
+                    <div class="card" style="border-radius: 20px; max-height: 35vh; min-height: 35vh;">
                 {% for photo in group.photogroup_set.all %}
                 <div class="image-card" class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
                     <img src="{{photo.url}}" style="border-radius: 15px; max-height: 30vh;">
@@ -23,7 +23,7 @@
                     <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
                     <form action="{% url 'assoc_profile' group.id %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="btn">Join Group</button>
+                        <button type="submit" class="btn">JOIN</button>
                     </form>
                 </div>
             </div>

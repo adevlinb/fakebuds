@@ -4,10 +4,10 @@
 
   <h5>Your upcoming events are:</h5>
     
-    <div class="row">
+    <div class="row" style="height: 25vh; width:100%">
         {% for group in groups %}
         {% for event in group.event_set.all %}
-        <div class="col s6 m4 l4 xl3">
+        <div class="col s3 m3 l3 xl3">
             <div class="card">
                 {% for photo in event.photoevent_set.all %}
                 <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
@@ -16,14 +16,14 @@
                 {% endfor %}
          
          
-                <div class="card-content" style="border-radius: 15px;">
+                <!-- <div class="card-content" style="border-radius: 15px;"> -->
                     <span class="card-title activator grey-text text-darken-4"><a
                             href="{% url 'events_detail' event.id %}"><span class="card-title">{{ event.title }}</span></a><i class="material-icons right">more_vert</i></span>
                     <p>Host: {{ event.host }}</p>
                     <p>Location: {{ event.location }}</p>
                     <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
                     <p>Time: {{ event.datetime|time:"h:i" }}</p>
-                </div>
+                <!-- </div> -->
                 <div class="card-reveal">
                     <span class="card-title grey-text text-darken-4"><a href="{% url 'detail' group.id %}"><span
                                 class="card-title">{{ group.name }}</span></a><i

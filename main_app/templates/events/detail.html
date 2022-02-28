@@ -2,7 +2,7 @@
 {% block content %}
 
     
-<div class="row" style="height: 25vh;">
+<div class="row" style="width:100%">
         <div class="col s4" >
             {% for photo in event.photoevent_set.all %}
             <img class="main-image" src="{{photo.url}}">
@@ -38,12 +38,12 @@
         
     </div>
     
-    <div class="row">
+    <div class="row" style="max-height: 20vh;">
 
         {% if recipes_in_event.count %}
             {% for recipe in recipes_in_event %}
                 <div class="col s3 m3 l3 xl3">
-                    <div class="card" style="border-radius: 20px; max-height: 40vh;">
+                    <div class="card" style="border-radius: 20px; max-height: 35vh; min-height: 35vh;">
                         <div style="padding: 10px;">
                             <a href="{{ recipe.url }}" target="_blank">
                                 <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
@@ -70,6 +70,4 @@
     </div>
 
 {% endblock %}
-
-    
 

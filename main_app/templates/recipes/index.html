@@ -15,13 +15,14 @@
                 {% if recipes.count %}
                 {% for recipe in recipes %}
                 <div class="col s3 m3 l3 xl3">
-                    <div class="card" style="border-radius: 20px; max-height: 35vh;">
+                    <div class="card" style="border-radius: 20px; max-height: 30vh; min-height: 30vh;">
                         <a href="{{ recipe.url }}" target="_blank">
                             <div class="card-content" style="border-radius: 20px;">
                                 <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
                             </div>
                         </a>
                         {% for photo in recipe.photorecipe_set.all %}
+
                         <div class="card-image" style="border-radius: 20px;">
                             <img style="border-radius: 20px;" src="{{photo.url}}">
                         </div>
@@ -41,4 +42,5 @@
 
   
  
+
 

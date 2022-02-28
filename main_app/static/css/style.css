@@ -1,9 +1,19 @@
-body {
+html {
+  margin: none;
+  padding: none;
+  min-height: 100%;
+  background-image: url("../images/background4.jpeg");
+  background-size: auto;
+}
+
+.body2 {
   display: flex;
-  min-height: 100vh;
+  margin: none;
+  padding: none;
+  min-height: 100%;
+  height: 100vh;
   flex-direction: column;
   font-family: 'Mukta', sans-serif;
-  background-image: url("../images/background4.jpeg");
   box-sizing: border-box;
 }
 
@@ -62,14 +72,6 @@ h5 {
   display: block;
 }
 
-.image {
-  /* object-fit: scale-down; */
-  /* max-width: fit-content; */
-  /* display: block;
-  margin: auto;
-  width: 30%; */
-}
-
 .main-image {
   max-height: 50px;
   vertical-align: middle;
@@ -86,6 +88,9 @@ h5 {
 .card-title {
   color: #ff4926;
   text-transform: uppercase;
+  padding-top: 5px;
+  padding-left: 5px;
+  margin-bottom: 50px;
 }
 
 .btn {
@@ -101,12 +106,9 @@ h5 {
 }
 
 img {
-  /* text-align: center; */
-  max-height: 50%;
-  width: auto;
-  max-width: 100%;
-  object-fit: fill;
-  object-position: center;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
 }
 
  .card, .card-panel {
@@ -118,7 +120,7 @@ img {
   border-width: 2px;
   border-color: black;
   contain: content;
-  overflow: none;
+  overflow: hidden;
 }
 .card-image, .card-reveal, .card-content {
   background-image: url("../images/bamboo12.png");
@@ -126,8 +128,7 @@ img {
 }
 
 .card-content {
-  padding: 20px !important;
-  padding-top: 10px !important; 
+  padding: 5px !important;
 }
 
 
