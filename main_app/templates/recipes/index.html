@@ -14,18 +14,16 @@
         
                 {% if recipes.count %}
                 {% for recipe in recipes %}
-                <div class="col s3 m3 l3 xl3">
-                    <div class="card" style="border-radius: 20px; max-height: 30vh; min-height: 30vh;">
+                {% for photo in recipe.photorecipe_set.all %}
+                <div class="col s4 m4 l4 xl4">
+                    <div class="card" style="border-radius: 20px; max-height: 30vh; min-height: 30vh; background: url({{photo.url}}); background-size: cover; background-position: center; ">
                         <a href="{{ recipe.url }}" target="_blank">
-                            <div class="card-content" style="border-radius: 20px;">
+                            <div class="card-content" style="border-radius: 20px; opacity: 0.85;">
                                 <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
                             </div>
                         </a>
-                        {% for photo in recipe.photorecipe_set.all %}
 
-                        <div class="card-image" style="border-radius: 20px;">
-                            <img style="border-radius: 20px;" src="{{photo.url}}">
-                        </div>
+                
                         {% endfor %}
                     </div>
                 </div>
@@ -40,7 +38,12 @@
 {% endblock %}
 
 
+<!-- <img style="border-radius: 20px;" src="{{photo.url}}"> -->
+
   
  
 
 
+<!-- <div class="card-image" style="border-radius: 20px; background: url({{photo.url}}); height: 100%;">
+                          
+                        </div>
