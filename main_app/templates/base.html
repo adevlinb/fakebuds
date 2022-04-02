@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taste•Buds</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kalam&display=swap" rel="stylesheet">
@@ -21,39 +21,35 @@
         rel="stylesheet">
 </head>
 <body>
+    <nav>
+        {% if user.is_authenticated %}
+        <div class="nav_ul">
+            {% for photo in user.profile.photoprofile_set.all %}
+            <img class="user-image" src="{{photo.url}}">
+            {% endfor %}
+            <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
+        </div>
+        {% endif %}
+        <ul class="nav_ul">
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'dashboard' %}">DASHBOARD</a></li>
+            <li><a href="{% url 'index' %}">GROUPS</a></li>
+            <li><a href="{% url 'recipes_index' %}">MY RECIPES</a></li>
+            <li><a href="{% url 'logout' %}">LOG OUT</a></li>
+        </ul>
+        {% else %}
+        <ul>
+            <li><a href="{% url 'login' %}">LOG IN</a></li>
+        </ul>
+        {% endif %}
+    </nav>
+    <div class="body2">
+        {% block content %}
 
-
-    <header class="navbar-fixed">
-        <nav class="blue-grey lighten-2">
-            <div class="nav-wrapper">
-                {% if user.is_authenticated %}
-                <ul>
-                    {% for photo in user.profile.photoprofile_set.all %}
-                    <li><img class="main-image" src="{{photo.url}}" style="border-radius: 15px;"></li>
-                    {% endfor %}
-                    <li id="welcome">Hi, {{ user.profile.name }}!</li>
-                </ul>
-                {% endif %}
-                <ul class="right">
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'dashboard' %}">DASHBOARD</a></li>
-                    <li><a href="{% url 'index' %}">GROUPS</a></li>
-                    <li><a href="{% url 'recipes_index' %}">MY RECIPES</a></li>
-                    <li><a href="{% url 'logout' %}">LOG OUT</a></li>
-                    {% else %}
-                    <li><a href="{% url 'login' %}">LOG IN</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
-    </header>
-<div class="body2">
-    {% block content %}
-
-    {% endblock %}
-</div>
-<footer class="page-footer blue-grey lighten-2" style="bottom: 0; position: fixed; width: 100%;">
-            <h5 style="float: right;">© 2022 Cali Coders</h5>
-</footer>
+        {% endblock %}
+    </div>
+    <footer>
+            <h5>© 2022 Cali Coders</h5>
+    </footer>
 </body>
 </html>

@@ -1,39 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="in-flex">
-  
+    <div class="horizontal" id="recipeIndexHeading">
         <h3>{{ user.profile.name }}'s Recipes</h3>
- 
-        <a class="btn" href="{% url 'recipes_create_page' %}"> ADD A NEW RECIPE</a>
-        <a class="btn-floating btn-med waves-effect waves-light red" href="{% url 'recipes_create_page' %}"><h3>+</h3></a>
+        <h3><a class="btn" href="{% url 'recipes_create_page' %}"> ADD A NEW RECIPE</a><h3>
+        <!-- <a class="btn-floating btn-med waves-effect waves-light red" href="{% url 'recipes_create_page' %}"><h3>+</h3></a> -->
+    </div>
+    <div class="recipeIndexRow">
+        {% if recipes.count %}
+        {% for recipe in recipes %}
+        {% for photo in recipe.photorecipe_set.all %}
 
-</div>
-
-<div class="row">
-        
-                {% if recipes.count %}
-                {% for recipe in recipes %}
-                {% for photo in recipe.photorecipe_set.all %}
-                <div class="col s4 m4 l4 xl4">
-                    <div class="card" style="border-radius: 20px; max-height: 30vh; min-height: 30vh; background: url({{photo.url}}); background-size: cover; background-position: center; ">
-                        <a href="{{ recipe.url }}" target="_blank">
-                            <div class="card-content" style="border-radius: 20px; opacity: 0.85;">
-                                <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
-                            </div>
-                        </a>
-
-                
-                        {% endfor %}
+            <div class="card" style="border-radius: 20px; max-height: 30vh; min-height: 30vh; background: url({{photo.url}}); background-size: cover; background-position: center; ">
+                <a href="{{ recipe.url }}" target="_blank">
+                    <div class="card-content" style="border-radius: 20px; opacity: 0.85;">
+                        <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
                     </div>
-                </div>
+                </a>
+
+        
                 {% endfor %}
-                {% else %}
-                <h5>Get to cookin, you don't have any recipes yet!!</h5>
-                {% endif %}
+            </div>
 
-
-</div>
+        {% endfor %}
+        {% else %}
+        <h5>Get to cookin, you don't have any recipes yet!!</h5>
+        {% endif %}
+    </div>
 
 {% endblock %}
 
