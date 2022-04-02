@@ -11,10 +11,10 @@
         {% for recipe in recipes %}
         {% for photo in recipe.photorecipe_set.all %}
 
-            <div class="card" style="border-radius: 20px; max-height: 30vh; min-height: 30vh; background: url({{photo.url}}); background-size: cover; background-position: center; ">
+            <div class="recipeCard" style="background: url({{photo.url}}); background-size: cover; background-position: center; ">
                 <a href="{{ recipe.url }}" target="_blank">
-                    <div class="card-content" style="border-radius: 20px; opacity: 0.85;">
-                        <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
+                    <div class="recipeCardContent">
+                        <span class="recipeCardTitle">{{ recipe.title }}</span>
                     </div>
                 </a>
 
