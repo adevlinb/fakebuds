@@ -134,11 +134,12 @@ footer.page-footer {
 }
 /*******************  DASHOARD ********************/
 .dashboardRow {
-  height: 85vh;
+  height: 79vh;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 0 2vw;
   gap: 1vw;
+  margin: 0 auto;
 }
 
 .dashboardCard {
@@ -156,7 +157,7 @@ footer.page-footer {
   border-radius: 15px; 
 }
 
-.dashboardCardReverse {
+.CardReverse {
   display: flex;
   flex-direction: column;
   background-image: url("../images/bamboo12.png");

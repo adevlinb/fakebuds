@@ -24,7 +24,7 @@
                     <p>Time: {{ event.datetime|time:"h:i" }}</p>
                 </div>
             </div>
-            <div class="dashboardCardReverse hidden">
+            <div class="CardReverse hidden">
                 {% for photo in group.photogroup_set.all %}
                 <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
                 {% endfor %}
@@ -58,12 +58,15 @@
     
     /************************** EVENT LISTENERS ********************************/
     dashboardRow.addEventListener('click', function(e){
-        console.log(e);
-        e.path[2].classList.add('hidden');
-        // dashboardCard.classList.add('hidden');
-        e.path[2].nextElementSibling.classList.remove('hidden');
-        // e.path[2].classList.add('display');
-        console.log('click open');
+        if(e.path[2].className.substring(0, 13) === "dashboardCard") {
+            e.path[2].classList.add('hidden');
+            e.path[2].nextElementSibling.classList.remove('hidden');
+        }
+        if(e.path[2].className.substring(0, 11) === "CardReverse") {
+            e.path[2].classList.add('hidden');
+            e.path[2].previousElementSibling.classList.remove('hidden');
+        }
+        else return;
     })
 
 
