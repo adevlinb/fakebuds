@@ -184,10 +184,64 @@ footer.page-footer {
 
 
 /*************** Group Detail Page *****************/
+.groupDetailColumn {
+  display: flex;
+  flex-direction: column;
+}
 
+#groupDetailHeading {
+  height: 25vh;
+  display: flex;
+}
 
+.groupMembersRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0 2vw;
+  gap: 1vw;
+}
 
+.groupDetailMembersCard {
+  height: 25vh;
+  min-height: 25vh;
+  border-radius: 20px;
+  border: 2px solid black;
+  overflow: hidden;
+  box-shadow: 3px 5px 5px rgb(116, 115, 115);
+}
 
+.groupDetailMembersContent {
+  display: flex;
+  justify-content: space-between;
+  height: 5vh;
+  align-items: center;
+  background-image: url("../images/bamboo12.png");
+  background-size: fill;
+  padding: 5px;
+  border-radius: 20px; 
+  opacity: 0.85;
+}
+
+.groupDetailMemberCardTitle {
+  color: #ff4926;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.groupDetailMembersContent > form {
+  display: flex;
+  align-items: center;
+}
+
+#leaveButton {
+  background-color: #ff4926;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  height: 3vh;
+  cursor: pointer;
+  padding: 3px;
+}
 
 /*************** Events Index Page *****************/
 
@@ -224,6 +278,7 @@ footer.page-footer {
   border-color: black;
   contain: content;
   overflow: hidden;
+  box-shadow: 3px 5px 5px rgb(116, 115, 115);
 }
 
 .recipeCardContent {

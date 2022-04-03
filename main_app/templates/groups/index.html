@@ -11,12 +11,12 @@
         <div id="groupColumn">
             <div class="groupCard">
                 {% for photo in group.photogroup_set.all %}
-                <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: center; "></div>
+                <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
                 {% endfor %}
                 <div class="groupCardContent">
                     <a href="{% url 'detail' group.id %}">
                         <span class="card-title">{{ group.name }}</span></a>
-                        <p>Creator: {{ user.profile.name }}</p>
+                        <p>Creator: {{ group.leader }}</p>
                         <p>Description: {{ group.description }}</p>
                         <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
                     </div>

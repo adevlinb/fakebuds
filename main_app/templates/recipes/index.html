@@ -9,19 +9,15 @@
     <div class="recipeIndexRow">
         {% if recipes.count %}
         {% for recipe in recipes %}
-        {% for photo in recipe.photorecipe_set.all %}
-
+            {% for photo in recipe.photorecipe_set.all %}
             <div class="recipeCard" style="background: url({{photo.url}}); background-size: cover; background-position: center; ">
                 <a href="{{ recipe.url }}" target="_blank">
                     <div class="recipeCardContent">
                         <span class="recipeCardTitle">{{ recipe.title }}</span>
                     </div>
                 </a>
-
-        
-                {% endfor %}
             </div>
-
+            {% endfor %}
         {% endfor %}
         {% else %}
         <h5>Get to cookin, you don't have any recipes yet!!</h5>

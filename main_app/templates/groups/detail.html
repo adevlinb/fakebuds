@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="row" style="height: 25vh;">
-        <div class="col s4">
+<div id="groupDetailColumn">
+    <div id="groupDetailHeading">
+        <div >
             {% for photo in group.photogroup_set.all %}
             <img class="main-image" src="{{photo.url}}">
             {% endfor %}
         </div>
-        <div class="col s4">
+        <div >
             <h1>Group: {{ group.name }}</h1>
         </div>
-        <div class="col s4">
+        <div >
             <p>Creator: {{ user.profile.name }}</p>
             <p>Description: {{ group.description }}</p>
             <p>Creation Date: {{ group.created_at }}</p>
@@ -18,27 +19,21 @@
         </div>
     </div>
 
-    <div class="row">
-        <h3>{{ group.name }} Members</h3>
+    <h3>{{ group.name }} Members</h3>
+    <div class="groupMembersRow">
         {% if profiles.count %}
         {% for profile in profiles.all %}
-
-        <div class="col s6 m6 l6 xl6">
-            <div class="card">
-                {% for photo in profile.photoprofile_set.all %}
-                <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
-                    <img src="{{photo.url}}" style="border-radius: 15px;">
-                </div>
-                {% endfor %}
-                <div class="card-content" style="border-radius: 15px;">
-                    <span class="card-title" style="width: 200px;">{{ profile.name }}</span>
+        {% for photo in profile.photoprofile_set.all %}
+            <div class="groupDetailMembersCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%;">
+                <div class="groupDetailMembersContent">
+                    <span class="groupDetailMemberCardTitle">{{ profile.name }}</span>
                     <form action="{% url 'unassoc_profile' group.id %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="btn">Leave</button>
+                        <button id="leaveButton" type="submit" class="btn">Leave</button>
                     </form>
                 </div>
             </div>
-        </div>
+            {% endfor %}
         {% endfor %}
         {% else %}
         <h5>No Members :(</h5>
@@ -79,5 +74,5 @@
     {% endif %}
     </div>
 
-
+</div>
 {% endblock %}
