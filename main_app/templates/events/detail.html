@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-    
-<div class="row" style="width:100%">
-        <div class="col s4" >
+<div id="eventDetailColumn">
+    <div class="eventDetailHeading">
+        <div >
             {% for photo in event.photoevent_set.all %}
-            <img class="main-image" src="{{photo.url}}">
+            <img id="eventDetailImage" src="{{photo.url}}">
             {% endfor %}
         </div>
-        <div class="col s4" >
+        <div >
             <h1>Event: {{ event.title }}</h1>
         </div>
-        <div class="col s4" >
+        <div >
             <p>Host: {{ event.host }}</p>
             <p>Location: {{ event.location }}</p>
             <p>Event Date: {{ event.datetime }}</p>
@@ -38,29 +38,24 @@
         
     </div>
     
-    <div class="row" style="max-height: 20vh;">
+    <div class="eventRecipeRow">
 
         {% if recipes_in_event.count %}
             {% for recipe in recipes_in_event %}
-                <div class="col s3 m3 l3 xl3">
-                    <div class="card" style="border-radius: 20px; max-height: 35vh; min-height: 35vh;">
-                        <div style="padding: 10px;">
-                            <a href="{{ recipe.url }}" target="_blank">
-                                <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
-                            </a>
+            {% for photo in recipe.photorecipe_set.all %}
+                <div class="eventRecipeCard" style="background: url({{photo.url}}); background-size: cover; background-position: center; ">
+                    <a href="{{ recipe.url }}" target="_blank">
+                        <div class="eventRecipeCardContent">
+                            <span class="eventRecipeCardTitle">{{ recipe.title }}</span>
                             <form action="{% url 'vote_up' event.id recipe.id %}" method="POST">
                                 {% csrf_token %}
-                                <button type="submit" class="btn"><i class="large material-icons">thumb_up</i></button>
+                                <button type="submit" class="btn">👍</button>
                             </form>
                             <div>vote score: {{ tally | get_item:recipe.id }}</div>
                         </div>
-                        {% for photo in recipe.photorecipe_set.all %}
-                        <div class="card-image" style="border-radius: 20px;">
-                            <img style="border-radius: 20px;" src="{{photo.url}}">
-                        </div>
-                        {% endfor %}
-                    </div>
+                    </a>
                 </div>
+                {% endfor %}
                 {% endfor %}
                 {% else %}
             <h5>Get to cookin, you don't have any recipes yet!!</h5>
@@ -68,6 +63,23 @@
 
 
     </div>
-
+</div>
 {% endblock %}
 
+        <!-- <div >
+                            <div class="card" style="border-radius: 20px; max-height: 35vh; min-height: 35vh;">
+                                <div style="padding: 10px;">
+                                    <a href="{{ recipe.url }}" target="_blank">
+                                        <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
+                                    </a>
+                                    <form action="{% url 'vote_up' event.id recipe.id %}" method="POST">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn"><i class="large material-icons">thumb_up</i></button>
+                                    </form>
+                                    <div>vote score: {{ tally | get_item:recipe.id }}</div>
+                                </div>
+                                <div class="card-image" style="border-radius: 20px;">
+                                    <img style="border-radius: 20px;" src="{{photo.url}}">
+                                </div>
+                            </div>
+                        </div> -->

@@ -4,28 +4,25 @@
 
   <h5>Your upcoming events are:</h5>
     
-    <div class="row" style="height: 25vh; width:100%">
+    <div class="dashboardRow">
         {% for group in groups %}
         {% for event in group.event_set.all %}
-        <div class="col s3 m3 l3 xl3">
-            <div class="card">
+     
+            <div class="dashboardCard">
                 {% for photo in event.photoevent_set.all %}
-                <div class="card-image waves-effect waves-block waves-light" style="border-radius: 15px;">
-                    <img class="activator" src="{{photo.url}}" style="border-radius: 15px;">
-                </div>
+                <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
+        
                 {% endfor %}
-         
-         
-                <!-- <div class="card-content" style="border-radius: 15px;"> -->
-                    <span class="card-title activator grey-text text-darken-4"><a
-                            href="{% url 'events_detail' event.id %}"><span class="card-title">{{ event.title }}</span></a><i class="material-icons right">more_vert</i></span>
-                    <p>Host: {{ event.host }}</p>
-                    <p>Location: {{ event.location }}</p>
-                    <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
-                    <p>Time: {{ event.datetime|time:"h:i" }}</p>
-                <!-- </div> -->
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4"><a href="{% url 'detail' group.id %}"><span
+   
+                <span ><a href="{% url 'events_detail' event.id %}">
+                <span class="card-title">{{ event.title }}</a></span>
+                <p>Host: {{ event.host }}</p>
+                <p>Location: {{ event.location }}</p>
+                <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
+                <p>Time: {{ event.datetime|time:"h:i" }}</p>
+    
+                <div class="dashboardCardReverse">
+                    <span><a href="{% url 'detail' group.id %}"><span
                                 class="card-title">{{ group.name }}</span></a><i
                             class="material-icons right">close</i></span>
                     <p>Leader: {{ group.leader }}</p>
@@ -38,7 +35,14 @@
         {% endfor %}
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+
+
+
+<script>
+
+
+
+
+</script>
 
 {% endblock %}
