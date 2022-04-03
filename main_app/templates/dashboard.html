@@ -7,27 +7,35 @@
     <div class="dashboardRow">
         {% for group in groups %}
         {% for event in group.event_set.all %}
-     
+        <div>
             <div class="dashboardCard">
                 {% for photo in event.photoevent_set.all %}
-                <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
+                <div class="dashboardImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
                 {% endfor %}
-   
-                <span ><a href="{% url 'events_detail' event.id %}">
-                <span class="card-title">{{ event.title }}</a> <button id="open"></button></span>
-                <p>Host: {{ event.host }}</p>
-                <p>Location: {{ event.location }}</p>
-                <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
-                <p>Time: {{ event.datetime|time:"h:i" }}</p>
+                <div>
+                    <a href="{% url 'events_detail' event.id %}">
+                    <span class="card-title">{{ event.title }}</a><button id="open">Open</button>
+                </div>
+                <div>
+                    <p>Host: {{ event.host }}</p>
+                    <p>Location: {{ event.location }}</p>
+                    <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
+                    <p>Time: {{ event.datetime|time:"h:i" }}</p>
+                </div>
             </div>
             <div class="dashboardCardReverse hidden">
-                <span><a href="{% url 'detail' group.id %}"><span
-                            class="card-title">{{ group.name }}</span></a><i
-                        class="material-icons right">close</i></span>
-                <p>Leader: {{ group.leader }}</p>
-                <p>Description: {{ group.description }}</p>
-                <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
-                <button id="close"></button>
+                {% for photo in group.photogroup_set.all %}
+                <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
+                {% endfor %}
+                <div>
+                    <a href="{% url 'detail' group.id %}">{{ group.name }}</a>
+                    <button id="close">Close</button>
+                </div>
+                <div>
+                    <p>Leader: {{ group.leader }}</p>
+                    <p>Description: {{ group.description }}</p>
+                    <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
+                </div>
             </div>
         </div>
         {% endfor %}
