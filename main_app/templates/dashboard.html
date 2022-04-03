@@ -11,24 +11,23 @@
             <div class="dashboardCard">
                 {% for photo in event.photoevent_set.all %}
                 <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
-        
                 {% endfor %}
    
                 <span ><a href="{% url 'events_detail' event.id %}">
-                <span class="card-title">{{ event.title }}</a></span>
+                <span class="card-title">{{ event.title }}</a> <button id="open"></button></span>
                 <p>Host: {{ event.host }}</p>
                 <p>Location: {{ event.location }}</p>
                 <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
                 <p>Time: {{ event.datetime|time:"h:i" }}</p>
-    
-                <div class="dashboardCardReverse">
-                    <span><a href="{% url 'detail' group.id %}"><span
-                                class="card-title">{{ group.name }}</span></a><i
-                            class="material-icons right">close</i></span>
-                    <p>Leader: {{ group.leader }}</p>
-                    <p>Description: {{ group.description }}</p>
-                    <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
-                </div>
+            </div>
+            <div class="dashboardCardReverse hidden">
+                <span><a href="{% url 'detail' group.id %}"><span
+                            class="card-title">{{ group.name }}</span></a><i
+                        class="material-icons right">close</i></span>
+                <p>Leader: {{ group.leader }}</p>
+                <p>Description: {{ group.description }}</p>
+                <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
+                <button id="close"></button>
             </div>
         </div>
         {% endfor %}
@@ -40,8 +39,27 @@
 
 <script>
 
+    /***************************** SELECTORS ********************************/
+    const dashboardCard = document.querySelector('.dashboardCard');
+    const dashboardCardReverse = document.querySelector('.dashboardCardReverse');
+    const open_button = document.getElementById('open');
+    const close_button = document.getElementById('close');
+    
+    
+    /************************** EVENT LISTENERS ********************************/
+    open_button.addEventListener('click', function () {
+        dashboardCard.classList.add('hidden');
+        dashboardCardReverse.classList.remove('hidden');
+        dashboardCardReverse.classList.add('display');
+        console.log('click open');
+    });
 
-
+    close_button.addEventListener('click', function () {
+        dashboardCard.classList.remove('hidden');
+        dashboardCardReverse.classList.remove('display');
+        dashboardCardReverse.classList.add('hidden');
+        console.log('click close');
+    });
 
 </script>
 

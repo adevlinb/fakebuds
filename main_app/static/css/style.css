@@ -151,6 +151,8 @@ footer.page-footer {
 }
 
 .dashboardCardReverse {
+  display: flex;
+  flex-direction: column;
   background-image: url("../images/bamboo12.png");
   background-size: contain;
   border-radius: 20px;
@@ -159,7 +161,13 @@ footer.page-footer {
   overflow: hidden;
 }
 
+.hidden {
+  display: none;
+}
 
+.display {
+  display: flex;
+}
 
 
 
