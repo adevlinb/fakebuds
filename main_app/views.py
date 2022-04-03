@@ -152,13 +152,19 @@ def events_create(request, group_id):
 
 @login_required
 def add_event(request, group_id):
+  print('start new event', group_id)
   form = EventForm(request.POST)
+  print(form), "form"
   photo_file = request.FILES.get('photo-file', None)
   if form.is_valid():
+
     new_event = form.save(commit=False)
     new_event.group_id = group_id
     new_event.save()
+    print('another new event')
+    print(new_event, "new_event")
   if photo_file:
+    print('make photo')
     s3 = boto3.client('s3')
     key = uuid.uuid4().hex[:8] + photo_file.name[photo_file.name.rfind('.'):]
     try:

@@ -176,6 +176,14 @@ footer.page-footer {
   display: flex;
 }
 
+#open {
+  background-color: red;
+}
+
+#close {
+  background-color: blue;
+}
+
 /*************** Group Index Page *****************/
 #groupIndexHeading > h3 {
   margin: 5px;

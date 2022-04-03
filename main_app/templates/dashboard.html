@@ -14,7 +14,8 @@
                 {% endfor %}
                 <div>
                     <a href="{% url 'events_detail' event.id %}">
-                    <span class="card-title">{{ event.title }}</a><button id="open">Open</button>
+                    <span class="card-title">{{ event.title }}</a><div id="open">Open</div>
+                       
                 </div>
                 <div>
                     <p>Host: {{ event.host }}</p>
@@ -29,7 +30,7 @@
                 {% endfor %}
                 <div>
                     <a href="{% url 'detail' group.id %}">{{ group.name }}</a>
-                    <button id="close">Close</button>
+                    <div id="close">Close</div>
                 </div>
                 <div>
                     <p>Leader: {{ group.leader }}</p>
@@ -48,26 +49,23 @@
 <script>
 
     /***************************** SELECTORS ********************************/
-    const dashboardCard = document.querySelector('.dashboardCard');
-    const dashboardCardReverse = document.querySelector('.dashboardCardReverse');
-    const open_button = document.getElementById('open');
-    const close_button = document.getElementById('close');
+    const dashboardRow = document.querySelector('.dashboardRow')
+    // const dashboardCard = document.querySelector('.dashboardCard');
+    // const dashboardCardReverse = document.querySelector('.dashboardCardReverse');
+    // const open_button = document.getElementById('open');
+    // const close_button = document.getElementById('close');
     
     
     /************************** EVENT LISTENERS ********************************/
-    open_button.addEventListener('click', function () {
-        dashboardCard.classList.add('hidden');
-        dashboardCardReverse.classList.remove('hidden');
-        dashboardCardReverse.classList.add('display');
+    dashboardRow.addEventListener('click', function(e){
+        console.log(e);
+        e.path[2].classList.add('hidden');
+        // dashboardCard.classList.add('hidden');
+        e.path[2].nextElementSibling.classList.remove('hidden');
+        // e.path[2].classList.add('display');
         console.log('click open');
-    });
+    })
 
-    close_button.addEventListener('click', function () {
-        dashboardCard.classList.remove('hidden');
-        dashboardCardReverse.classList.remove('display');
-        dashboardCardReverse.classList.add('hidden');
-        console.log('click close');
-    });
 
 </script>
 
