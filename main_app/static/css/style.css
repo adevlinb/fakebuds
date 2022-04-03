@@ -133,8 +133,12 @@ footer.page-footer {
   justify-content: center;
 }
 /*******************  DASHOARD ********************/
+.dashboardHeading {
+  height: 5vh;
+}
+
 .dashboardRow {
-  height: 79vh;
+  height: 80vh;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 0 2vw;
@@ -147,14 +151,27 @@ footer.page-footer {
   background-size: contain;
   border-radius: 20px;
   border: 2px solid black;
-  height: 40vh;
+  height: 45vh;
+  width: 22vw;
   overflow: hidden;
   box-shadow: 3px 5px 5px rgb(116, 115, 115);
 }
 
+.dashboardCard > div:nth-child(2n) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: rgba(177, 177, 177, 0.75);
+  font-size: large;
+}
+
+.dashboardCard > div:nth-child(3n) {
+  padding: 5px;
+}
+
 .dashboardImageCard {
   height: 20vh;
-  border-radius: 15px; 
 }
 
 .CardReverse {
@@ -164,9 +181,27 @@ footer.page-footer {
   background-size: contain;
   border-radius: 20px;
   border: 2px solid black;
-  height: 40vh;
+  height: 45vh;
+  width: 22vw;
   overflow: hidden;
   box-shadow: 3px 5px 5px rgb(116, 115, 115);
+}
+
+.CardReverseImageCard {
+  height: 20vh;
+}
+
+.CardReverse > div:nth-child(2n) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: rgba(177, 177, 177, 0.75);
+  font-size: large;
+}
+
+.CardReverse > div:nth-child(3n) {
+  padding: 5px;
 }
 
 .hidden {
@@ -177,12 +212,20 @@ footer.page-footer {
   display: flex;
 }
 
-#open {
-  background-color: red;
-}
-
-#close {
-  background-color: blue;
+#open, #close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 73, 38, 0.85);
+  color: black;
+  font-size: x-large;
+  border-radius: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+  height: 3vh;
+  width: 3vh;
+  box-shadow: 3px 5px 5px rgb(161, 161, 161);
+  text-align: center;
 }
 
 /*************** Group Index Page *****************/
@@ -425,9 +468,6 @@ footer.page-footer {
 .card-title {
   color: #ff4926;
   text-transform: uppercase;
-  padding-top: 5px;
-  padding-left: 5px;
-  margin-bottom: 50px;
 }
 
 

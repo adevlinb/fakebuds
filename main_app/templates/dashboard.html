@@ -2,7 +2,9 @@
 {% block content %}
 
 
-  <h5>Your upcoming events are:</h5>
+    <div class="dashboardHeading">
+        <h5>Your upcoming events are:</h5>
+    </div>
     
     <div class="dashboardRow">
         {% for group in groups %}
@@ -14,8 +16,7 @@
                 {% endfor %}
                 <div>
                     <a href="{% url 'events_detail' event.id %}">
-                    <span class="card-title">{{ event.title }}</a><div id="open">Open</div>
-                       
+                    <span class="card-title">{{ event.title }}</span></a><div id="open">+</div> 
                 </div>
                 <div>
                     <p>Host: {{ event.host }}</p>
@@ -26,11 +27,11 @@
             </div>
             <div class="CardReverse hidden">
                 {% for photo in group.photogroup_set.all %}
-                <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
+                <div class="CardReverseImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
                 {% endfor %}
                 <div>
-                    <a href="{% url 'detail' group.id %}">{{ group.name }}</a>
-                    <div id="close">Close</div>
+                    <a href="{% url 'detail' group.id %}"><span class="card-title">{{ group.name }}</span></a>
+                    <div id="close">-</div>
                 </div>
                 <div>
                     <p>Leader: {{ group.leader }}</p>
@@ -58,7 +59,6 @@
     
     /************************** EVENT LISTENERS ********************************/
     dashboardRow.addEventListener('click', function(e){
-        console.log(e)
         if(e.path[2].className.substring(0, 13) === "dashboardCard" && e.target.id === "open") {
             e.path[2].classList.add('hidden');
             e.path[2].nextElementSibling.classList.remove('hidden');
