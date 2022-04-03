@@ -58,11 +58,12 @@
     
     /************************** EVENT LISTENERS ********************************/
     dashboardRow.addEventListener('click', function(e){
-        if(e.path[2].className.substring(0, 13) === "dashboardCard") {
+        console.log(e)
+        if(e.path[2].className.substring(0, 13) === "dashboardCard" && e.target.id === "open") {
             e.path[2].classList.add('hidden');
             e.path[2].nextElementSibling.classList.remove('hidden');
         }
-        if(e.path[2].className.substring(0, 11) === "CardReverse") {
+        if(e.path[2].className.substring(0, 11) === "CardReverse" && e.target.id === "close") {
             e.path[2].classList.add('hidden');
             e.path[2].previousElementSibling.classList.remove('hidden');
         }
