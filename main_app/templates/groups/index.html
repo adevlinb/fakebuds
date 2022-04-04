@@ -13,18 +13,20 @@
                 {% for photo in group.photogroup_set.all %}
                 <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
                 {% endfor %}
-                <div class="groupCardContent">
-                    <a href="{% url 'detail' group.id %}">
-                        <span class="card-title">{{ group.name }}</span></a>
-                        <p>Creator: {{ group.leader }}</p>
-                        <p>Description: {{ group.description }}</p>
-                        <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
-                    </div>
+            
+                <div>
+                    <a href="{% url 'detail' group.id %}"><span class="card-title">{{ group.name }}</span></a>
+                    <form action="{% url 'assoc_profile' group.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" id="groupBtn">JOIN</button>
+                    </form>
                 </div>
-                <form action="{% url 'assoc_profile' group.id %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" id="groupBtn">JOIN</button>
-                </form>
+                <div>
+                    <p>Creator: {{ group.leader }}</p>
+                    <p>Description: {{ group.description }}</p>
+                    <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
+                </div>
+            </div>
         </div>
         {% endfor %}
     </div>

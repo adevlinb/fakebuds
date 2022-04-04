@@ -162,8 +162,10 @@ footer.page-footer {
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  background-color: rgba(177, 177, 177, 0.75);
+  background-color: rgba(192, 192, 192, 0.75);
   font-size: large;
+  font-weight: 900;
+  border: 0.1px solid black;
 }
 
 .dashboardCard > div:nth-child(3n) {
@@ -196,8 +198,9 @@ footer.page-footer {
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  background-color: rgba(177, 177, 177, 0.75);
+  background-color: rgba(192, 192, 192, 0.75);
   font-size: large;
+  border: 0.1px solid black;
 }
 
 .CardReverse > div:nth-child(3n) {
@@ -256,24 +259,35 @@ footer.page-footer {
   box-shadow: 3px 5px 5px rgb(116, 115, 115);
 }
 
-.groupCardContent {
+.groupCard > div:nth-child(2n) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: rgba(192, 192, 192, 0.75);
+  font-size: large;
+  font-weight: 900;
+  border: 0.1px solid black;
+}
+
+.groupCard > div:nth-child(3n) {
   padding: 5px;
 }
 
 .groupImageCard {
   height: 20vh;
-  border-radius: 15px; 
 }
 
 #groupBtn {
-  background-color: #ff4926;
-  width: 100%;
-  border-radius: 20px;
-  border: none;
+  background-color: rgba(255, 73, 38, 0.85);
+  padding: 3px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 6vh;
   height: 3vh;
+  box-shadow: 3px 5px 5px rgb(161, 161, 161);
+  text-align: center;
 }
-
-
 
 /*************** Group Detail Page *****************/
 .groupDetailColumn {
