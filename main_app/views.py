@@ -229,6 +229,8 @@ def add_recipe(request):
 
 @login_required
 def assoc_recipe(request, event_id):
+  if request.POST['recipes'] == 'choose a recipe!':
+    return redirect('events_detail', event_id)
   recipe_id = request.POST['recipes']
   recipe = Recipe.objects.get(id=recipe_id)
   recipe.events.add(event_id)

@@ -16,26 +16,20 @@
             <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
             <p>Time: {{ event.datetime|time:"h:i" }}</p>
         </div>
+        <h3>Recommend A Recipe:</h3>
+        <form action="{% url 'assoc_recipe' event.id  %}" method="POST">
+            {% csrf_token %}
+            <select name="recipes" class="add-recipe">
+                <option value="choose a recipe!">Choose a recipe!</option>
+                {% for recipe in recipes_not_in_event %}
+                <option name='recipe' value="{{recipe.id}}">{{ recipe.title }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Add Recipe">
+        </form>
     </div>
-    <div class="eventColumnTwo">
-
-        <div class="horizontal">
-            <h3>Recommended Recipes:</h3>
-    
-            <div class="row" style="max-height: 10vh;">
-                <form action="{% url 'assoc_recipe' event.id  %}" method="POST">
-                    {% csrf_token %}
-                    <select name="recipes" class="add-recipe">
-                        {% for recipe in recipes_not_in_event %}
-                        <option name='recipe' value="{{recipe.id}}">{{ recipe.title }}</option>
-                        {% endfor %}
-                    </select>
-                    <input type="submit" value="Add Recipe">
-                </form>
-            </div>
-            
-        </div>
         
+    <div class="eventColumnTwo">
         <div class="eventRecipeRow">
 
             {% if recipes_in_event.count %}
