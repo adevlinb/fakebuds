@@ -1,76 +1,73 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div id="groupDetailColumn">
+<div id="groupDetailRow">
     <div id="groupDetailHeading">
-        <div >
-            {% for photo in group.photogroup_set.all %}
-            <img class="groupDetailImage" src="{{photo.url}}">
-            {% endfor %}
+        {% for photo in group.photogroup_set.all %}
+        <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;">
+            <!-- <img class="groupDetailImage" src="{{photo.url}}"> -->
+        {% endfor %}
         </div>
         <div >
             <h1>Group: {{ group.name }}</h1>
         </div>
         <div >
-            <p>Creator: {{ user.profile.name }}</p>
+            <p>Creator: {{ group.leader }}</p>
             <p>Description: {{ group.description }}</p>
             <p>Creation Date: {{ group.created_at }}</p>
             <pre><a class="card-title" href="{% url 'groups_update' group.id %}">Edit Info</a>    <a class="card-title" href="{% url 'groups_delete' group.id %}">Delete Group</a>
         </div>
     </div>
+    <div class="groupColumnTwo">
+        <h3>{{ group.name }} Members</h3>
+        <div class="groupMembersRow">
+            {% if profiles.count %}
+            {% for profile in profiles.all %}
+            {% for photo in profile.photoprofile_set.all %}
+                <div class="groupDetailMembersCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%;">
+                    <div class="groupDetailMembersContent">
+                        <span class="groupDetailMemberCardTitle">{{ profile.name }}</span>
+                        <form action="{% url 'unassoc_profile' group.id %}" method="POST">
+                            {% csrf_token %}
+                            <button id="leaveButton" type="submit" class="btn">Leave</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endfor %}
+            {% else %}
+            <h5>No Members :(</h5>
+            {% endif %}
+        </div>
 
-    <h3>{{ group.name }} Members</h3>
-    <div class="groupMembersRow">
-        {% if profiles.count %}
-        {% for profile in profiles.all %}
-        {% for photo in profile.photoprofile_set.all %}
-            <div class="groupDetailMembersCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%;">
-                <div class="groupDetailMembersContent">
-                    <span class="groupDetailMemberCardTitle">{{ profile.name }}</span>
-                    <form action="{% url 'unassoc_profile' group.id %}" method="POST">
-                        {% csrf_token %}
-                        <button id="leaveButton" type="submit" class="btn">Leave</button>
-                    </form>
+        <div class="horizontal">
+            <h3>Group Events:</h3>
+            <a class=btn href="{% url 'events_create' group.id %}"> ADD AN EVENT</a>
+        </div>
+        <div class="groupDetailEventsRow">
+        {% if group.event_set.all.count %}
+        {% for event in group.event_set.all %}
+            <div >
+                <div class="groupDetailEventsCard">
+                    {% for photo in event.photoevent_set.all %}
+                    <div class="groupDetailEventsImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
+                    {% endfor %}
+                    <div>
+                        <a href="{% url 'events_detail' event.id %}">
+                        <span class="card-title">{{ event.title }}</span></a>
+                    </div>
+                    <div>
+                        <p>Host: {{ event.host }}</p>
+                        <p>Location: {{ event.location }}</p>
+                        <p>Event Date: {{ event.datetime }}</p>
+                    </div>
                 </div>
             </div>
-            {% endfor %}
         {% endfor %}
         {% else %}
-        <h5>No Members :(</h5>
+        <h5>Y'all need to get together and make some events!</h5>
         {% endif %}
-    </div>
-
-    <div class="horizontal">
-        <h3>Group Events:</h3>
-        <a class=btn href="{% url 'events_create' group.id %}"> ADD AN EVENT</a>
-    </div>
-
-    <br>
-    <br>
-
-
-    <div class="groupDetailEventsRow">
-    {% if group.event_set.all.count %}
-    {% for event in group.event_set.all %}
-        <div >
-            <div class="groupDetailEventsCard">
-                {% for photo in event.photoevent_set.all %}
-                <div class="groupDetailEventsImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
-                {% endfor %}
-                <div class="groupDetailEventCardContent" style="border-radius: 15px;">
-                    <a href="{% url 'events_detail' event.id %}">
-                    <span class="card-title">{{ event.title }}</span></a>
-                    <p>Host: {{ event.host }}</p>
-                    <p>Location: {{ event.location }}</p>
-                    <p>Event Date: {{ event.datetime }}</p>
-                </div>
-            </div>
         </div>
-    {% endfor %}
-    {% else %}
-    <h5>Y'all need to get together and make some events!</h5>
-    {% endif %}
     </div>
-
 </div>
 {% endblock %}

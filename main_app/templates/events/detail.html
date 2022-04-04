@@ -1,85 +1,66 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div id="eventDetailColumn">
-    <div class="eventDetailHeading">
-        <div >
-            {% for photo in event.photoevent_set.all %}
-            <img id="eventDetailImage" src="{{photo.url}}">
-            {% endfor %}
+<div id="eventDetailRow">
+    <div id="eventDetailHeading">
+        {% for photo in event.photoevent_set.all %}
+        <div style="background: url({{photo.url}}); background-size: cover; background-position: center;">
+        {% endfor %}
         </div>
-        <div >
+        <div>
             <h1>Event: {{ event.title }}</h1>
         </div>
-        <div >
+        <div>
             <p>Host: {{ event.host }}</p>
             <p>Location: {{ event.location }}</p>
             <p>Event Date: {{ event.datetime }}</p>
         </div>
     </div>
-    <div class="divider"></div>
+    <div class="eventColumnTwo">
 
-    <div class="in-flex">
-        <h3>Recommended Recipe's:</h3>
- 
-        <div class="row" style="max-height: 10vh;">
-
-            <form action="{% url 'assoc_recipe' event.id  %}" method="POST">
-                {% csrf_token %}
-                <select name="recipes" class="add-recipe">
-                    {% for recipe in recipes_not_in_event %}
-                    <option name='recipe' value="{{recipe.id}}">{{ recipe.title }}</option>
-                    {% endfor %}
-                </select>
-                
-                <input type="submit" value="Add Recipe">
-            </form>
+        <div class="horizontal">
+            <h3>Recommended Recipe's:</h3>
+    
+            <div class="row" style="max-height: 10vh;">
+                <form action="{% url 'assoc_recipe' event.id  %}" method="POST">
+                    {% csrf_token %}
+                    <select name="recipes" class="add-recipe">
+                        {% for recipe in recipes_not_in_event %}
+                        <option name='recipe' value="{{recipe.id}}">{{ recipe.title }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="Add Recipe">
+                </form>
+            </div>
+            
         </div>
         
-    </div>
-    
-    <div class="eventRecipeRow">
+        <div class="eventRecipeRow">
 
-        {% if recipes_in_event.count %}
-            {% for recipe in recipes_in_event %}
-            {% for photo in recipe.photorecipe_set.all %}
-                <div class="eventRecipeCard" style="background: url({{photo.url}}); background-size: cover; background-position: center; ">
-                    <a href="{{ recipe.url }}" target="_blank">
-                        <div class="eventRecipeCardContent">
-                            <span class="eventRecipeCardTitle">{{ recipe.title }}</span>
+            {% if recipes_in_event.count %}
+                {% for recipe in recipes_in_event %}
+                {% for photo in recipe.photorecipe_set.all %}
+                    <div class="eventRecipeCard" >
+                        <div class="eventRecipeImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: center; "></div>
+                        <div>
+                            <a href="{{ recipe.url }}" target="_blank"><span class="eventRecipeCardTitle">{{ recipe.title }}</span></a>
                             <form action="{% url 'vote_up' event.id recipe.id %}" method="POST">
                                 {% csrf_token %}
                                 <button type="submit" class="btn">👍</button>
                             </form>
-                            <div>vote score: {{ tally | get_item:recipe.id }}</div>
                         </div>
-                    </a>
-                </div>
-                {% endfor %}
-                {% endfor %}
-                {% else %}
-            <h5>Get to cookin, you don't have any recipes yet!!</h5>
-        {% endif %}
-
-
+                        <div>
+                            <p>vote score: {{ tally | get_item:recipe.id }}</p>
+                            <p>Recipe Recommendation by:</p>
+                            <p>{{ recipe.user }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endfor %}
+                    {% else %}
+                <h5>Get to cookin, you don't have any recipes yet!!</h5>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}
-
-        <!-- <div >
-                            <div class="card" style="border-radius: 20px; max-height: 35vh; min-height: 35vh;">
-                                <div style="padding: 10px;">
-                                    <a href="{{ recipe.url }}" target="_blank">
-                                        <span class="card-title" style="border-radius: 20px;">{{ recipe.title }}</span>
-                                    </a>
-                                    <form action="{% url 'vote_up' event.id recipe.id %}" method="POST">
-                                        {% csrf_token %}
-                                        <button type="submit" class="btn"><i class="large material-icons">thumb_up</i></button>
-                                    </form>
-                                    <div>vote score: {{ tally | get_item:recipe.id }}</div>
-                                </div>
-                                <div class="card-image" style="border-radius: 20px;">
-                                    <img style="border-radius: 20px;" src="{{photo.url}}">
-                                </div>
-                            </div>
-                        </div> -->
