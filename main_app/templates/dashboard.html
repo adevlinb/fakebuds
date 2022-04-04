@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+<div id="dashboardMain">
     <div class="dashboardHeading">
         <h5>Your upcoming events are:</h5>
     </div>
@@ -9,7 +9,7 @@
     <div class="dashboardRow">
         {% for group in groups %}
         {% for event in group.event_set.all %}
-        <div>
+    
             <div class="dashboardCard">
                 {% for photo in event.photoevent_set.all %}
                 <div class="dashboardImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
@@ -39,7 +39,7 @@
                     <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
                 </div>
             </div>
-        </div>
+      
         {% endfor %}
         {% endfor %}
     </div>
@@ -47,14 +47,11 @@
 
 
 
+
 <script>
 
     /***************************** SELECTORS ********************************/
     const dashboardRow = document.querySelector('.dashboardRow')
-    // const dashboardCard = document.querySelector('.dashboardCard');
-    // const dashboardCardReverse = document.querySelector('.dashboardCardReverse');
-    // const open_button = document.getElementById('open');
-    // const close_button = document.getElementById('close');
     
     
     /************************** EVENT LISTENERS ********************************/

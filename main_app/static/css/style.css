@@ -194,18 +194,29 @@ footer {
 .landingInfo > div > 
 
 
-/*******************  DASHOARD ********************/
+/*******************  DASHBOARD ********************/
+#dashboardMain {
+  display: flex;
+  height: 85vh;
+}
+
 .dashboardHeading {
-  height: 5vh;
+  height: 85vh;
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+  margin: none;
 }
 
 .dashboardRow {
   height: 80vh;
+  width: 50vw;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   padding: 0 2vw;
   gap: 1vw;
-  margin: 0 auto;
+  margin: none;
 }
 
 .dashboardCard {

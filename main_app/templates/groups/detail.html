@@ -14,8 +14,9 @@
         <div >
             <p>Creator: {{ group.leader }}</p>
             <p>Description: {{ group.description }}</p>
-            <p>Creation Date: {{ group.created_at }}</p>
-            <pre><a class="card-title" href="{% url 'groups_update' group.id %}">Edit Info</a>    <a class="card-title" href="{% url 'groups_delete' group.id %}">Delete Group</a>
+            <p>Date: {{ group.created_at|date:"DATE_FORMAT" }}</p>                   
+            <a class="card-title" href="{% url 'groups_update' group.id %}">Edit Info</a>    
+            <a class="card-title" href="{% url 'groups_delete' group.id %}">Delete Group</a>
         </div>
     </div>
     <div class="groupColumnTwo">
@@ -59,7 +60,8 @@
                     <div>
                         <p>Host: {{ event.host }}</p>
                         <p>Location: {{ event.location }}</p>
-                        <p>Event Date: {{ event.datetime }}</p>
+                        <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
+                        <p>Time: {{ event.datetime|time:"h:i" }}</p>
                     </div>
                 </div>
             </div>

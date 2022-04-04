@@ -13,13 +13,14 @@
         <div>
             <p>Host: {{ event.host }}</p>
             <p>Location: {{ event.location }}</p>
-            <p>Event Date: {{ event.datetime }}</p>
+            <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
+            <p>Time: {{ event.datetime|time:"h:i" }}</p>
         </div>
     </div>
     <div class="eventColumnTwo">
 
         <div class="horizontal">
-            <h3>Recommended Recipe's:</h3>
+            <h3>Recommended Recipes:</h3>
     
             <div class="row" style="max-height: 10vh;">
                 <form action="{% url 'assoc_recipe' event.id  %}" method="POST">
@@ -50,8 +51,8 @@
                             </form>
                         </div>
                         <div>
-                            <p>vote score: {{ tally | get_item:recipe.id }}</p>
-                            <p>Recipe Recommendation by:</p>
+                            <p>votes: {{ tally | get_item:recipe.id }}</p>
+                            <p>Recommended by:</p>
                             <p>{{ recipe.user }}</p>
                         </div>
                     </div>
