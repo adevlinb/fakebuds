@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taste•Buds</title>
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
@@ -21,28 +21,27 @@
         rel="stylesheet">
 </head>
 <body>
-    <nav>
-        {% if user.is_authenticated %}
-        <div class="nav_ul">
-            {% for photo in user.profile.photoprofile_set.all %}
-            <img class="user-image" src="{{photo.url}}">
-            {% endfor %}
-            <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
-        </div>
-        {% endif %}
-        <ul class="nav_ul">
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'dashboard' %}">DASHBOARD</a></li>
-            <li><a href="{% url 'index' %}">GROUPS</a></li>
-            <li><a href="{% url 'recipes_index' %}">MY RECIPES</a></li>
-            <li><a href="{% url 'logout' %}">LOG OUT</a></li>
-        </ul>
+    {% if user.is_authenticated %}
+        <nav id="loggedIn">
+            <div class="nav_ul">
+                {% for photo in user.profile.photoprofile_set.all %}
+                <img class="user-image" src="{{photo.url}}">
+                {% endfor %}
+                <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
+            </div>
+            <ul class="nav_ul">
+                <li><a href="{% url 'dashboard' %}">DASHBOARD</a></li>
+                <li><a href="{% url 'index' %}">GROUPS</a></li>
+                <li><a href="{% url 'recipes_index' %}">MY RECIPES</a></li>
+                <li><a href="{% url 'logout' %}">LOG OUT</a></li>
+            </ul>
+        </nav>
         {% else %}
-        <ul>
-            <li><a href="{% url 'login' %}">LOG IN</a></li>
-        </ul>
+        <nav id="loggedOut">
+            <li id="login"><a href="{% url 'login' %}">LOG IN</a></li>
+        </nav>
+        
         {% endif %}
-    </nav>
     <div class="body2">
         {% block content %}
 

@@ -20,12 +20,22 @@ body {
 }
 
 /*************** NAV BAR *****************/
-nav {
+#loggedIn {
   background-color: #7D909C;
   height: 8vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100vw;
+}
+
+#loggedOut {
+  background-color: #7D909C;
+  height: 8vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100vw;
 }
 
 nav > div {
@@ -46,6 +56,24 @@ nav > div > img {
   color: white;
 }
 
+#login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 73, 38, 1);
+  padding: 3px;
+  margin-right: 5vw;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 10vh;
+  height: 5vh;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+#login > a {
+  color: black;
+}
 
 #welcomeUsername {
   color: rgb(206, 206, 206);
@@ -73,13 +101,6 @@ main {
   flex: 1 0 auto;
 }
 
-.home_background {
-  background-image: url("../images/main_img1.jpeg");
-  height: 250px;
-  align-items: center;
-  justify-content: center;
-}
-
 .horizontal {
   display: flex;
   justify-content: center;
@@ -102,19 +123,29 @@ footer {
 }
 
 /*************** LANDING PAGE *****************/
-footer.page-footer {
-  padding-top: 0;
-  padding-right: 50px;
-  text-align: right;
+.home_background {
+  background-image: url("../images/main_img1.jpeg");
+  height: 40vh;
+}
+
+.landing_titles {
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 40vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .taste_title {
   text-align: center;
-  margin-top: 0;
+  margin: none;
   color: white;
   font-family: 'Indie Flower', cursive;
-  font-size: 50px;
+  font-size: 8vh;
   font-weight: bolder;
+  line-height: 7vh;
 }
 
 .land_icon {
@@ -127,11 +158,42 @@ footer.page-footer {
   font-weight: 900;
 }
 
-.landing_titles {
-  background-color: rgba(0, 0, 0, 0.5);
-  align-items: center;
+#signUp {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 73, 38, 1);
+  padding: 3px;
+  border-radius: 5px;
+  border: 1px solid black;
+  width: 10vh;
+  height: 5vh;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.6);
+  color: black;
+  margin-top: 3vh;
 }
+
+.landingInfo {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vw;
+  padding: 2vw;
+}
+
+.landingInfo > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: justify;
+  text-justify: inter-word;
+  padding: 1vw;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.landingInfo > div > 
+
+
 /*******************  DASHOARD ********************/
 .dashboardHeading {
   height: 5vh;
