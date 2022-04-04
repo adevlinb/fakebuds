@@ -191,32 +191,44 @@ footer {
   background-color: rgba(255, 255, 255, 1);
 }
 
-.landingInfo > div > 
+
 
 
 /*******************  DASHBOARD ********************/
-#dashboardMain {
+
+.dashboard-main {
   display: flex;
   height: 85vh;
+  align-items: center;
 }
 
 .dashboardHeading {
-  height: 85vh;
-  width: 25vw;
+  width: 20vw;
+  height: 84vh;
   display: flex;
   flex-direction: column;
-  background-color: red;
-  margin: none;
+  margin: 0;
+  padding: 1vh;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgba(192, 192, 192, 0.75);
+  box-shadow: 3px 5px 5px rgb(161, 161, 161);
+  margin-left: 0.25vw;
 }
 
-.dashboardRow {
-  height: 80vh;
-  width: 50vw;
+.dashboardColumnTwo {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
+}
+
+.dashboardGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 0 2vw;
   gap: 1vw;
   margin: none;
+  align-items: start;
 }
 
 .dashboardCard {

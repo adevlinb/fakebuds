@@ -1,48 +1,50 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div id="dashboardMain">
-    <div class="dashboardHeading">
-        <h5>Your upcoming events are:</h5>
-    </div>
-    
-    <div class="dashboardRow">
-        {% for group in groups %}
-        {% for event in group.event_set.all %}
-    
-            <div class="dashboardCard">
-                {% for photo in event.photoevent_set.all %}
-                <div class="dashboardImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
-                {% endfor %}
-                <div>
-                    <a href="{% url 'events_detail' event.id %}">
-                    <span class="card-title">{{ event.title }}</span></a><div id="open">+</div> 
-                </div>
-                <div>
-                    <p>Host: {{ event.host }}</p>
-                    <p>Location: {{ event.location }}</p>
-                    <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
-                    <p>Time: {{ event.datetime|time:"h:i" }}</p>
-                </div>
+<div class="dashboard-main">
+
+            <div class="dashboardHeading">
+                <h5>Your upcoming events are:</h5>
             </div>
-            <div class="CardReverse hidden">
-                {% for photo in group.photogroup_set.all %}
-                <div class="CardReverseImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
-                {% endfor %}
-                <div>
-                    <a href="{% url 'detail' group.id %}"><span class="card-title">{{ group.name }}</span></a>
-                    <div id="close">-</div>
+            <div class="dashboardColumnTwo">
+                <div class="dashboardGrid">
+                    {% for group in groups %}
+                    {% for event in group.event_set.all %}
+                
+                        <div class="dashboardCard">
+                            {% for photo in event.photoevent_set.all %}
+                            <div class="dashboardImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
+                            {% endfor %}
+                            <div>
+                                <a href="{% url 'events_detail' event.id %}">
+                                <span class="card-title">{{ event.title }}</span></a><div id="open">+</div> 
+                            </div>
+                            <div>
+                                <p>Host: {{ event.host }}</p>
+                                <p>Location: {{ event.location }}</p>
+                                <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
+                                <p>Time: {{ event.datetime|time:"h:i" }}</p>
+                            </div>
+                        </div>
+                        <div class="CardReverse hidden">
+                            {% for photo in group.photogroup_set.all %}
+                            <div class="CardReverseImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
+                            {% endfor %}
+                            <div>
+                                <a href="{% url 'detail' group.id %}"><span class="card-title">{{ group.name }}</span></a>
+                                <div id="close">-</div>
+                            </div>
+                            <div>
+                                <p>Leader: {{ group.leader }}</p>
+                                <p>Description: {{ group.description }}</p>
+                                <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
+                            </div>
+                        </div>
+                
+                    {% endfor %}
+                    {% endfor %}
                 </div>
-                <div>
-                    <p>Leader: {{ group.leader }}</p>
-                    <p>Description: {{ group.description }}</p>
-                    <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
-                </div>
-            </div>
-      
-        {% endfor %}
-        {% endfor %}
-    </div>
+            </div>   
 </div>
 
 
@@ -51,11 +53,11 @@
 <script>
 
     /***************************** SELECTORS ********************************/
-    const dashboardRow = document.querySelector('.dashboardRow')
+    const dashboardGrid = document.querySelector('.dashboardGrid')
     
     
     /************************** EVENT LISTENERS ********************************/
-    dashboardRow.addEventListener('click', function(e){
+    dashboardGrid.addEventListener('click', function(e){
         if(e.path[2].className.substring(0, 13) === "dashboardCard" && e.target.id === "open") {
             e.path[2].classList.add('hidden');
             e.path[2].nextElementSibling.classList.remove('hidden');
