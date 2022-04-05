@@ -4,15 +4,19 @@
 <div class="dashboard-main">
 
             <div class="dashboardHeading">
-                <h5>Your upcoming events are:</h5>
-
+                
                 {% for photo in user.profile.photoprofile_set.all %}
                 <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;"></div>
                 {% endfor %}
                 <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
-    
+                <h5>You belong to {{ groups.count }} groups!</h5>
+                
             </div>
             <div class="dashboardColumnTwo">
+                <div>
+                    <h5>Your upcoming events are:</h5>
+                </div>
+
                 <div class="dashboardGrid">
                     {% for group in groups %}
                     {% for event in group.event_set.all %}
@@ -48,10 +52,16 @@
                                 <div id="close">-</div>
                             </div>
                             <div>
+
                                 <p>GROUP INFO:</p>
-                                <p>Leader: {{ group.leader }}</p>
-                                <p>Description: {{ group.description }}</p>
-                                <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
+                                <div class="infoGrid">
+                                    <p>Leader:</p>
+                                    <p>{{ group.leader }}</p>
+                                    <p>Established:</p>
+                                    <p>{{ group.created_at|date:"DATE_FORMAT" }}</p>
+                                    <p>Description:</p>
+                                    <p>{{ group.description }}</p>
+                                </div>
                             </div>
                         </div>
                 

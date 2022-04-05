@@ -8,18 +8,27 @@
         {% endfor %}
         </div>
         <div >
-            <h1>Group: {{ group.name }}</h1>
+            <h2>{{ group.name }}</h2>
+            <div class="infoGrid">
+                <a class="card-title" href="{% url 'groups_update' group.id %}">Edit Info</a>    
+                <a class="card-title" href="{% url 'groups_delete' group.id %}">Delete Group</a>
+            </div>
         </div>
-        <div >
-            <p>Creator: {{ group.leader }}</p>
-            <p>Description: {{ group.description }}</p>
-            <p>Date: {{ group.created_at|date:"DATE_FORMAT" }}</p>                   
-            <a class="card-title" href="{% url 'groups_update' group.id %}">Edit Info</a>    
-            <a class="card-title" href="{% url 'groups_delete' group.id %}">Delete Group</a>
+        <div class="infoGrid">
+            <p>Creator:</p>
+            <p>{{ group.leader }}</p>
+            <p>Date:</p>                   
+            <p>{{ group.created_at|date:"DATE_FORMAT" }}</p>                   
+            <p>Description:</p>
+            <p>{{ group.description }}</p>
         </div>
+        <a class=btn href="{% url 'events_create' group.id %}"> ADD AN EVENT</a>
     </div>
-    <div class="groupColumnTwo">
-        <h3>{{ group.name }} Members</h3>
+
+    <div class="groupDetailColumnTwo">
+        <div>
+            <h5>{{ group.name }} Members</h5>
+        </div>
         <div class="groupMembersRow">
             {% if profiles.count %}
             {% for profile in profiles.all %}
@@ -39,31 +48,34 @@
             <h5>No Members :(</h5>
             {% endif %}
         </div>
-
-        <div class="horizontal">
-            <h3>Group Events:</h3>
-            <a class=btn href="{% url 'events_create' group.id %}"> ADD AN EVENT</a>
+        <div>
+            <h5>Group Events:</h5>
         </div>
+
+
         <div class="groupDetailEventsRow">
         {% if group.event_set.all.count %}
         {% for event in group.event_set.all %}
-            <div >
-                <div class="groupDetailEventsCard">
-                    {% for photo in event.photoevent_set.all %}
-                    <div class="groupDetailEventsImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
-                    {% endfor %}
-                    <div>
-                        <a href="{% url 'events_detail' event.id %}">
-                        <span class="card-title">{{ event.title }}</span></a>
-                    </div>
-                    <div>
-                        <p>Host: {{ event.host }}</p>
-                        <p>Location: {{ event.location }}</p>
-                        <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
-                        <p>Time: {{ event.datetime|time:"h:i" }}</p>
-                    </div>
+            <div class="groupDetailEventsCard">
+                {% for photo in event.photoevent_set.all %}
+                <div class="groupDetailEventsImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
+                {% endfor %}
+                <div>
+                    <a href="{% url 'events_detail' event.id %}">
+                    <span class="card-title">{{ event.title }}</span></a>
+                </div>
+                <div class="infoGrid">
+                    <p>Host:</p>
+                    <p>{{ event.host }}</p>
+                    <p>Location:</p>
+                    <p>{{ event.location }}</p>
+                    <p>Time:</p>
+                    <p>{{ event.datetime|time:"h:i" }}</p>
+                    <p>Date:</p>
+                    <p>{{ event.datetime|date:"DATE_FORMAT" }}</p>
                 </div>
             </div>
+           
         {% endfor %}
         {% else %}
         <h5>Y'all need to get together and make some events!</h5>

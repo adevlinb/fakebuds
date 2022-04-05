@@ -3,8 +3,7 @@
 
 <div class="dashboard-main">
 
-    <div class="dashboardHeading">
-        <h5>Your upcoming events are:</h5>
+    <div class="groupIndexHeading">
     
         {% for photo in user.profile.photoprofile_set.all %}
         <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;"></div>
@@ -16,9 +15,15 @@
 
     </div>
 
-    <div class="groupIndexRow">
-        {% for group in groups %}
-        <div id="groupColumn">
+    <div class="groupColumn2">
+        <div>
+            <h5>Join some groups!</h5>
+        </div>
+
+  
+        <div class="groupIndexRow">
+    
+            {% for group in groups %}
             <div class="groupCard">
                 {% for photo in group.photogroup_set.all %}
                 <div class="groupImageCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%; "></div>
@@ -37,10 +42,10 @@
                     <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
                 </div>
             </div>
+            {% endfor %}
+
         </div>
-        {% endfor %}
     </div>
- 
 </div>
 
 {% endblock %}

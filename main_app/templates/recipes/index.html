@@ -5,8 +5,6 @@
 <div class="dashboard-main">
 
     <div class="dashboardHeading">
-        <h5>Your upcoming events are:</h5>
-    
         {% for photo in user.profile.photoprofile_set.all %}
         <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;"></div>
         {% endfor %}
@@ -23,22 +21,29 @@
         </form>
     </div>
 
-    <div class="recipeIndexRow">
-        {% if recipes.count %}
-        {% for recipe in recipes %}
-            {% for photo in recipe.photorecipe_set.all %}
-            <div class="recipeCard" style="background: url({{photo.url}}); background-size: cover; background-position: center; ">
-                <a href="{{ recipe.url }}" target="_blank">
-                    <div class="recipeCardContent">
-                        <span class="recipeCardTitle">{{ recipe.title }}</span>
-                    </div>
-                </a>
-            </div>
+    <div class="recipeColumn2">
+
+        <div>
+            <h5>Your recipes:</h5>
+        </div>
+
+        <div class="recipeIndexRow">
+            {% if recipes.count %}
+            {% for recipe in recipes %}
+                {% for photo in recipe.photorecipe_set.all %}
+                <div class="recipeCard" style="background: url({{photo.url}}); background-size: cover; background-position: center; ">
+                    <a href="{{ recipe.url }}" target="_blank">
+                        <div class="recipeCardContent">
+                            <span class="recipeCardTitle">{{ recipe.title }}</span>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-        {% else %}
-        <h5>Get to cookin, you don't have any recipes yet!!</h5>
-        {% endif %}
+            {% else %}
+            <h5>Get to cookin, you don't have any recipes yet!!</h5>
+            {% endif %}
+        </div>
     </div>
 </div>
 {% endblock %}

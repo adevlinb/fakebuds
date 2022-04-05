@@ -224,6 +224,7 @@ footer {
 .dashboard-main {
   display: flex;
   height: 85vh;
+  padding: 1vh;
 }
 
 .dashboardHeading {
@@ -237,27 +238,39 @@ footer {
   border-radius: 15px;
   background-color: rgba(192, 192, 192, 0.75);
   box-shadow: 3px 5px 5px rgb(161, 161, 161);
-  margin-left: 0.25vw;
+  align-self: center;
 }
 
-.dashboardHeading > div:nth-child(2n) {
-  height: 25vh;
+.dashboardHeading > div:nth-child(1) {
+  height: 20vh;
   border-radius: 10px;
 }
 
 .dashboardColumnTwo {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  overflow: scroll;
+}
+
+.dashboardColumnTwo > div:nth-child(1) {
   width: 75vw;
+  background-color: rgba(192, 192, 192, 0.55);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0 5vw;
+  margin-top: 2vh;
 }
 
 .dashboardGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 0 2vw;
-  gap: 1vw;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 2vh 2vw;
+  gap: 2vw;
   margin: none;
   align-items: start;
+
 }
 
 .dashboardCard {
@@ -294,6 +307,8 @@ footer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   line-height: 3vh;
+  max-height: 15vh;
+  overflow: scroll;
 }
 
 .CardReverse {
@@ -356,17 +371,50 @@ footer {
   margin: 5px;
 }
 
+.groupIndexHeading {
+  width: 20vw;
+  height: 84vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1vh;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgba(192, 192, 192, 0.75);
+  box-shadow: 3px 5px 5px rgb(161, 161, 161);
+  align-self: center;
+}
+
+.groupIndexHeading > div:nth-child(1) {
+  height: 20vh;
+  border-radius: 10px;
+}
+
+
+.groupColumn2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  overflow: scroll;
+}
+
+.groupColumn2 > div:nth-child(1) {
+  width: 75vw;
+  background-color: rgba(192, 192, 192, 0.55);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0 5vw;
+  margin-top: 2vh;
+}
+
 .groupIndexRow {
   height: 79vh;
+  width: 80vw;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 0 2vw;
   gap: 1vw;
-}
-
-#groupColumn {
-  display: flex;
-  flex-direction: column;
 }
 
 .groupCard {
@@ -414,10 +462,11 @@ footer {
   display: flex;
   height: 85vh;
   align-items: center;
-}
+  padding: 1vh;
+} 
 
 #groupDetailHeading {
-  width: 25vw;
+  width: 20vw;
   height: 84vh;
   display: flex;
   flex-direction: column;
@@ -427,7 +476,7 @@ footer {
   border-radius: 15px;
   background-color: rgba(192, 192, 192, 0.75);
   box-shadow: 3px 5px 5px rgb(161, 161, 161);
-  margin-left: 0.25vw;
+  align-self: center;
 }
 
 #groupDetailHeading > div:nth-child(1) {
@@ -435,18 +484,33 @@ footer {
   border-radius: 10px;
 }
 
-#groupDetailHeading > div:nth-child(2n) {
-  padding: 2vh;
-}
-
-#groupDetailHeading > div:nth-child(3n) {
-  padding: 2vh;
-}
-
-.groupColumnTwo {
+.groupDetailColumnTwo {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  overflow: scroll;
 }
+
+.groupDetailColumnTwo > div:nth-child(1) {
+  width: 80vw;
+  background-color: rgba(192, 192, 192, 0.55);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0 5vw;
+  margin-top: 2vh;
+}
+
+.groupDetailColumnTwo > div:nth-child(3n) {
+  width: 80vw;
+  background-color: rgba(192, 192, 192, 0.55);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0 5vw;
+  margin-top: 2vh;
+}
+
+
 
 .groupDetailImage {
   width: 10vw;
@@ -548,7 +612,7 @@ footer {
 }
 
 #eventDetailHeading {
-  width: 25vw;
+  width: 20vw;
   height: 84vh;
   display: flex;
   flex-direction: column;
@@ -558,7 +622,6 @@ footer {
   border-radius: 15px;
   background-color: rgba(192, 192, 192, 0.75);
   box-shadow: 3px 5px 5px rgb(161, 161, 161);
-  margin-left: 0.25vw;
   align-self: center;
 }
 
@@ -567,18 +630,20 @@ footer {
   border-radius: 10px;
 }
 
-#eventDetailHeading > div:nth-child(2n) {
-  padding: 2vh;
-}
-
-#eventDetailHeading > div:nth-child(3n) {
-  padding: 2vh;
-}
 
 .eventColumnTwo {
   display: flex;
   flex-direction: column;
   width: 75vw;
+}
+
+.eventColumnTwo > div:nth-child(1) {
+  width: 75vw;
+  background-color: rgba(192, 192, 192, 0.55);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0 5vw;
+  margin-top: 2vh;
 }
 
 #eventDetailImage {
@@ -634,21 +699,40 @@ footer {
   margin: 5px;
 }
 
+.recipeColumn2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80vw;
+  overflow: scroll;
+}
+
+.recipeColumn2 > div:nth-child(1) {
+  width: 75vw;
+  background-color: rgba(192, 192, 192, 0.55);
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 0 5vw;
+  margin-top: 2vh;
+}
+
 .recipeIndexRow {
   height: 79vh;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 0 2vw;
+  padding: 2vh 2vw;
   gap: 1vw;
+  align-items: start;
 }
 
 .add-recipe {
   display: block;
 }
 
- .recipeCard {
+.recipeCard {
   border-radius: 20px;
-  height: 27.5vh;
+  height: 30vh;
+  width: 17.5vw;
   border-style: solid;
   border-width: 2px;
   border-color: black;
