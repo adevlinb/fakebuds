@@ -5,6 +5,12 @@
 
             <div class="dashboardHeading">
                 <h5>Your upcoming events are:</h5>
+
+                {% for photo in user.profile.photoprofile_set.all %}
+                <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;"></div>
+                {% endfor %}
+                <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
+    
             </div>
             <div class="dashboardColumnTwo">
                 <div class="dashboardGrid">

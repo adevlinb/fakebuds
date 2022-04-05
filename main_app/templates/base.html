@@ -38,6 +38,12 @@
         </nav>
         {% else %}
         <nav id="loggedOut">
+            <form action="/accounts/login/" enctype="multipart/form-data" method="POST" id="guest_form">
+                {% csrf_token %}
+                <input type="hidden" name="username" value="guest">
+                <input type="hidden" name="password" value="tasteBudsGuest">
+                <input type="submit" class="btn" id="guest_login" value="GUEST LOGIN">
+            </form>
             <li id="login"><a href="{% url 'login' %}">LOG IN</a></li>
         </nav>
         

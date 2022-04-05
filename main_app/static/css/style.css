@@ -75,8 +75,33 @@ nav > div > img {
   color: black;
 }
 
+#guest_form {
+  min-width: 12vw;
+  margin-right: 2vw;
+}
+
+#guest_login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 73, 38, 1);
+  padding: 3px;
+  border-radius: 5px;
+  border: 1px solid black;
+  min-width: 12vw;
+  width: 12vw;
+  height: 5vh;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.6);
+
+}
+
+#guest_login > a {
+  color: black;
+}
+
 #welcomeUsername {
-  color: rgb(206, 206, 206);
+  color: black;
   text-transform: uppercase;
   font-size: 2vw;
 }
@@ -199,7 +224,6 @@ footer {
 .dashboard-main {
   display: flex;
   height: 85vh;
-  align-items: center;
 }
 
 .dashboardHeading {
@@ -214,6 +238,11 @@ footer {
   background-color: rgba(192, 192, 192, 0.75);
   box-shadow: 3px 5px 5px rgb(161, 161, 161);
   margin-left: 0.25vw;
+}
+
+.dashboardHeading > div:nth-child(2n) {
+  height: 25vh;
+  border-radius: 10px;
 }
 
 .dashboardColumnTwo {

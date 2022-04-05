@@ -12,6 +12,12 @@ from django.template.defaultfilters import register
 from .models import Group, Event, PhotoProfile, Profile, Recipe, Vote, PhotoGroup, PhotoEvent, PhotoRecipe
 from .forms import EventForm, ProfileForm, RecipeForm
 
+from django.contrib.auth.models import User
+
+
+
+
+
 # Custom Filter
 @register.filter
 def get_item(dictionary, key):
@@ -45,6 +51,19 @@ def signup(request):
 def profile_form(request):
   profile_form = ProfileForm()
   return render(request, 'registration/profile_form.html', {'profile_form': profile_form})
+
+def guest_login(request):
+  print('guest login')
+  superusers = User.objects.filter(is_superuser=True)
+  print(superusers)
+  form = {'username': 'guest-account', 'password': 'taste-buds-guest'}
+  if form:
+    login(form)
+  else:
+    error_message = 'Invalid Sign Up, Try Again'
+    return redirect ('/')
+  return render ('dashboard')
+
 
 @login_required
 def add_profile(request):

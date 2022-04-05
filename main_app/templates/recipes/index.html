@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
+<div class="dashboard-main">
+
+    <div class="dashboardHeading">
+        <h5>Your upcoming events are:</h5>
+    
+        {% for photo in user.profile.photoprofile_set.all %}
+        <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;"></div>
+        {% endfor %}
+        <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
+    
+    </div>
+
     <div class="horizontal" id="recipeIndexHeading">
         <h3>{{ user.profile.name }}'s Recipes</h3>
         <h3><a class="btn" href="{% url 'recipes_create_page' %}"> ADD A NEW RECIPE</a><h3>
@@ -23,6 +36,6 @@
         <h5>Get to cookin, you don't have any recipes yet!!</h5>
         {% endif %}
     </div>
-
+</div>
 {% endblock %}
 
