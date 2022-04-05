@@ -11,14 +11,18 @@
         <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;"></div>
         {% endfor %}
         <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
-    
+        <p>On the right are your recipes!</p>
+        <p>BELOW you can add a new recipe! Once added 
+            you will be able to recommend them in events that you are part of</p>
+        <form action="{% url 'add_recipe' %}" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ recipe_form.as_p }}
+            <p>Upload a photo (required):</p>
+            <input type="file" required name="photo-file">
+            <input type="submit" class="btn" value="Add Recipe!">
+        </form>
     </div>
 
-    <div class="horizontal" id="recipeIndexHeading">
-        <h3>{{ user.profile.name }}'s Recipes</h3>
-        <h3><a class="btn" href="{% url 'recipes_create_page' %}"> ADD A NEW RECIPE</a><h3>
-        <!-- <a class="btn-floating btn-med waves-effect waves-light red" href="{% url 'recipes_create_page' %}"><h3>+</h3></a> -->
-    </div>
     <div class="recipeIndexRow">
         {% if recipes.count %}
         {% for recipe in recipes %}

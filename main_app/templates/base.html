@@ -24,10 +24,7 @@
     {% if user.is_authenticated %}
         <nav id="loggedIn">
             <div class="nav_ul">
-                {% for photo in user.profile.photoprofile_set.all %}
-                <img class="user-image" src="{{photo.url}}">
-                {% endfor %}
-                <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
+                <h5 class="taste_title">TASTE•BUDS</h5>
             </div>
             <ul class="nav_ul">
                 <li><a href="{% url 'dashboard' %}">DASHBOARD</a></li>

@@ -219,7 +219,8 @@ def unassoc_profile(request, group_id):
 @login_required
 def recipes_index(request):
   recipes = Recipe.objects.filter(user=request.user)
-  return render(request, 'recipes/index.html', { 'recipes': recipes })
+  recipe_form = RecipeForm()
+  return render(request, 'recipes/index.html', { 'recipes': recipes, 'recipe_form': recipe_form })
 
 def recipes_create_page(request):
   recipe_form = RecipeForm()
