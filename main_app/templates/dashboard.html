@@ -26,10 +26,17 @@
                                 <span class="card-title">{{ event.title }}</span></a><div id="open">+</div> 
                             </div>
                             <div>
-                                <p>Host: {{ event.host }}</p>
-                                <p>Location: {{ event.location }}</p>
-                                <p>Date: {{ event.datetime|date:"DATE_FORMAT" }}</p>
-                                <p>Time: {{ event.datetime|time:"h:i" }}</p>
+                                <p>EVENT INFO:</p>
+                                <div class="infoGrid">
+                                    <p>Host:</p>
+                                    <p>{{ event.host }}</p>
+                                    <p>Location:</p>
+                                    <p>{{ event.location }}</p>
+                                    <p>Time:</p>
+                                    <p>{{ event.datetime|time:"h:i" }}</p>
+                                    <p>Date:</p>
+                                    <p>{{ event.datetime|date:"DATE_FORMAT" }}</p>
+                                </div>
                             </div>
                         </div>
                         <div class="CardReverse hidden">
@@ -41,6 +48,7 @@
                                 <div id="close">-</div>
                             </div>
                             <div>
+                                <p>GROUP INFO:</p>
                                 <p>Leader: {{ group.leader }}</p>
                                 <p>Description: {{ group.description }}</p>
                                 <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>

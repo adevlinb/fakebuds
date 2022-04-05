@@ -3,29 +3,17 @@
 
 <div class="dashboard-main">
 
-        <div class="dashboardHeading">
-            <h5>Your upcoming events are:</h5>
-        
-            {% for photo in user.profile.photoprofile_set.all %}
-            <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;"></div>
-            {% endfor %}
-            <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
-            <p>On the right are your recipes!</p>
-            <p>BELOW you can add a new recipe! Once added
-                you will be able to recommend them in events that you are part of</p>
-            <form action="{% url 'add_recipe' %}" enctype="multipart/form-data" method="POST">
-                {% csrf_token %}
-                {{ recipe_form.as_p }}
-                <p>Upload a photo (required):</p>
-                <input type="file" required name="photo-file">
-                <input type="submit" class="btn" value="Add Recipe!">
-            </form>
-        </div>
+    <div class="dashboardHeading">
+        <h5>Your upcoming events are:</h5>
+    
+        {% for photo in user.profile.photoprofile_set.all %}
+        <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;"></div>
+        {% endfor %}
+        <h5 id="welcomeUsername">Hi, {{ user.profile.name }}!</h5>
+        <p>On the right are the groups you can join!!</p>
+        <p>BELOW you can start your own group!!</p>
+            <h3><a href="{% url 'groups_create' %}"> NEW GROUP!</a></h3>
 
-
-    <div class="horizontal" id="groupIndexHeading">
-        <h3>Groups</h3>
-        <h3><a href="{% url 'groups_create' %}"> START A GROUP</a></h3>
     </div>
 
     <div class="groupIndexRow">
