@@ -688,6 +688,7 @@ footer {
   font-size: large;
   font-weight: 900;
   border: 0.1px solid black;
+  line-height: 1.5vh;
 }
 
 .eventRecipeCard > div:nth-child(3n) {
