@@ -37,6 +37,8 @@
         <nav id="loggedOut">
             <form action="/accounts/login/" enctype="multipart/form-data" method="POST" id="guest_form">
                 {% csrf_token %}
+                <!-- <input type="hidden" name="username" value="guest">
+                <input type="hidden" name="password" value="tasteBudsGuest"> -->
                 <input type="hidden" name="username" value="guest-account">
                 <input type="hidden" name="password" value="taste-buds-guest">
                 <input type="submit" class="btn" id="guest_login" value="GUEST LOGIN">
