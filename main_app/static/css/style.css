@@ -221,7 +221,7 @@ footer {
 
 /*******************  DASHBOARD ********************/
 
-.dashboard-main {
+.dashboardMain {
   display: flex;
   height: 85vh;
   padding: 1vh;
@@ -270,7 +270,6 @@ footer {
   gap: 2vw;
   margin: none;
   align-items: start;
-
 }
 
 .dashboardCard {
@@ -367,8 +366,10 @@ footer {
 }
 
 /*************** Group Index Page *****************/
-#groupIndexHeading > h3 {
-  margin: 5px;
+.groupIndexMain {
+  display: flex;
+  height: 85vh;
+  padding: 1vh;
 }
 
 .groupIndexHeading {
@@ -390,8 +391,7 @@ footer {
   border-radius: 10px;
 }
 
-
-.groupColumn2 {
+.groupColumnTwo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -399,7 +399,7 @@ footer {
   overflow: scroll;
 }
 
-.groupColumn2 > div:nth-child(1) {
+.groupColumnTwo > div:nth-child(1) {
   width: 75vw;
   background-color: rgba(192, 192, 192, 0.55);
   border: 1px solid black;
@@ -408,13 +408,15 @@ footer {
   margin-top: 2vh;
 }
 
-.groupIndexRow {
-  height: 79vh;
-  width: 80vw;
+.groupGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 0 2vw;
-  gap: 1vw;
+  padding: 2vh 2vw;
+  gap: 2vw;
+  margin: none;
+  align-self: flex-start;
+  width: 80vw;
+
 }
 
 .groupCard {
@@ -436,6 +438,7 @@ footer {
   font-size: large;
   font-weight: 900;
   border: 0.1px solid black;
+  line-height: 1.5vh;
 }
 
 .groupCard > div:nth-child(3n) {
@@ -461,7 +464,6 @@ footer {
 #groupDetailRow {
   display: flex;
   height: 85vh;
-  align-items: center;
   padding: 1vh;
 } 
 
@@ -480,7 +482,7 @@ footer {
 }
 
 #groupDetailHeading > div:nth-child(1) {
-  height: 25vh;
+  height: 20vh;
   border-radius: 10px;
 }
 
@@ -493,7 +495,7 @@ footer {
 }
 
 .groupDetailColumnTwo > div:nth-child(1) {
-  width: 80vw;
+  width: 75vw;
   background-color: rgba(192, 192, 192, 0.55);
   border: 1px solid black;
   border-radius: 20px;
@@ -502,7 +504,7 @@ footer {
 }
 
 .groupDetailColumnTwo > div:nth-child(3n) {
-  width: 80vw;
+  width: 75vw;
   background-color: rgba(192, 192, 192, 0.55);
   border: 1px solid black;
   border-radius: 20px;
@@ -510,17 +512,17 @@ footer {
   margin-top: 2vh;
 }
 
-
-
-.groupDetailImage {
-  width: 10vw;
+#membersFlex {
+  display: flex;
+  flex-direction: row;
 }
 
 .groupMembersRow {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 0 2vw;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 2vh 2vw;
   gap: 1vw;
+  width: 80vw;
 }
 
 .groupDetailMembersCard {
@@ -567,10 +569,11 @@ footer {
 
 .groupDetailEventsRow {
   display: grid;
+  width: 80vw;
   grid-template-columns: repeat(4, 1fr);
-  padding: 0 2vw;
+  padding: 2vh 2vw;
   gap: 1vw;
-  margin-bottom: 2vh;
+  align-self: flex-start;
 }
 
 .groupDetailEventsCard {
@@ -608,7 +611,6 @@ footer {
 #eventDetailRow {
   display: flex;
   height: 85vh;
-  /* align-items: center; */
 }
 
 #eventDetailHeading {
@@ -634,7 +636,9 @@ footer {
 .eventColumnTwo {
   display: flex;
   flex-direction: column;
-  width: 75vw;
+  align-items: center;
+  width: 80vw;
+  overflow: scroll;
 }
 
 .eventColumnTwo > div:nth-child(1) {
@@ -653,9 +657,12 @@ footer {
 
 .eventRecipeRow {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 0 2vw;
+  grid-template-columns: repeat(5, 1fr);
+  width: 80vw;
+  padding: 2vh 2vw;
   gap: 1vw;
+  overflow: scroll;
+  align-self: flex-start;
 }
 
 .eventRecipeCard {
@@ -663,7 +670,7 @@ footer {
   background-size: contain;
   border-radius: 20px;
   border: 2px solid black;
-  height: 45vh;
+  height: 40vh;
   overflow: hidden;
   box-shadow: 3px 5px 5px rgb(116, 115, 115);
 }
@@ -695,8 +702,29 @@ footer {
 
 
 /*************** Recipes Index Page *****************/
-#recipeIndexHeading > h3 {
-  margin: 5px;
+.recipesMain {
+  display: flex;
+  height: 85vh;
+  padding: 1vh;
+}
+
+.recipesHeading {
+  width: 20vw;
+  height: 84vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 1vh;
+  border: 2px solid black;
+  border-radius: 15px;
+  background-color: rgba(192, 192, 192, 0.75);
+  box-shadow: 3px 5px 5px rgb(161, 161, 161);
+  align-self: center;
+}
+
+.recipesHeading > div:nth-child(1) {
+  height: 20vh;
+  border-radius: 10px;
 }
 
 .recipeColumn2 {
@@ -716,13 +744,13 @@ footer {
   margin-top: 2vh;
 }
 
-.recipeIndexRow {
-  height: 79vh;
+.recipeGrid{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 2vh 2vw;
-  gap: 1vw;
-  align-items: start;
+  gap: 2vw;
+  margin: none;
+  align-self: flex-start;
 }
 
 .add-recipe {
@@ -762,6 +790,7 @@ footer {
 .card-title {
   color: #ff4926;
   text-transform: uppercase;
+  font-size: 1.3vw;
 }
 
 

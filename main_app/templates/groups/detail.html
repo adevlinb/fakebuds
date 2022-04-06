@@ -29,10 +29,12 @@
         <div>
             <h5>{{ group.name }} Members</h5>
         </div>
-        <div class="groupMembersRow">
-            {% if profiles.count %}
-            {% for profile in profiles.all %}
-            {% for photo in profile.photoprofile_set.all %}
+        <div id="membersFlex">
+
+            <div class="groupMembersRow">
+                {% if profiles.count %}
+                {% for profile in profiles.all %}
+                {% for photo in profile.photoprofile_set.all %}
                 <div class="groupDetailMembersCard" style="background: url({{photo.url}}); background-size: cover; background-position: 50%;">
                     <div class="groupDetailMembersContent">
                         <span class="groupDetailMemberCardTitle">{{ profile.name }}</span>
@@ -43,11 +45,13 @@
                     </div>
                 </div>
                 {% endfor %}
-            {% endfor %}
-            {% else %}
-            <h5>No Members :(</h5>
-            {% endif %}
+                {% endfor %}
+                {% else %}
+                <h5>No Members :(</h5>
+                {% endif %}
+            </div>
         </div>
+        
         <div>
             <h5>Group Events:</h5>
         </div>

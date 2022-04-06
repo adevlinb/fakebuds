@@ -2,9 +2,9 @@
 {% block content %}
 
 
-<div class="dashboard-main">
+<div class="recipesMain">
 
-    <div class="dashboardHeading">
+    <div class="recipesHeading">
         {% for photo in user.profile.photoprofile_set.all %}
         <div style="background: url({{photo.url}}); background-size: cover; background-position: 50%;"></div>
         {% endfor %}
@@ -22,12 +22,11 @@
     </div>
 
     <div class="recipeColumn2">
-
         <div>
             <h5>Your recipes:</h5>
         </div>
 
-        <div class="recipeIndexRow">
+        <div class="recipeGrid">
             {% if recipes.count %}
             {% for recipe in recipes %}
                 {% for photo in recipe.photorecipe_set.all %}

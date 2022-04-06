@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="dashboard-main">
+<div class="groupIndexMain">
 
     <div class="groupIndexHeading">
     
@@ -15,13 +15,13 @@
 
     </div>
 
-    <div class="groupColumn2">
+    <div class="groupColumnTwo">
         <div>
             <h5>Join some groups!</h5>
         </div>
 
   
-        <div class="groupIndexRow">
+        <div class="groupGrid">
     
             {% for group in groups %}
             <div class="groupCard">
@@ -36,10 +36,13 @@
                         <button type="submit" id="groupBtn">JOIN</button>
                     </form>
                 </div>
-                <div>
-                    <p>Creator: {{ group.leader }}</p>
-                    <p>Description: {{ group.description }}</p>
-                    <p>Established: {{ group.created_at|date:"DATE_FORMAT" }}</p>
+                <div class="infoGrid">
+                    <p>Creator:</p>
+                    <p>{{ group.leader }}</p>
+                    <p>Description:</p>
+                    <p>{{ group.description }}</p>
+                    <p>Established:</p>
+                    <p>{{ group.created_at|date:"DATE_FORMAT" }}</p>
                 </div>
             </div>
             {% endfor %}
